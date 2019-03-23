@@ -38,7 +38,7 @@
                 @foreach($detail as $de)
                     <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
                         {{ csrf_field() }}
-                        {{ method_field('PATCH') }}
+                        {{ method_field('DELETE') }}
 
                         <tr>
 

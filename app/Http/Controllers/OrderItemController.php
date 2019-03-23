@@ -42,5 +42,9 @@ class OrderItemController extends Controller
         $data = ['detail' => $detail,];
         return view('item',$data);
     }
-
+    public function destroy($id,$item)
+    {
+        DetailEloquent::destroy($item);
+        return redirect()->route('menu.index');
+    }
 }

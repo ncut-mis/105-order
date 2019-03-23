@@ -32,3 +32,6 @@ Route::post('/order/{id}/item',['as' => 'order.item.store' , 'uses' => 'OrderIte
 
 /*查詢點餐明細*/
 Route::get('/order/{id}/item',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index']);
+
+/*取消已點選餐點*/
+Route::delete('/order/{id}/item/{item}',['as' => 'order.item.destroy' , 'uses' => 'OrderItemController@destroy']);
