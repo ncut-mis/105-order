@@ -47,4 +47,14 @@ class OrderItemController extends Controller
         DetailEloquent::destroy($item);
         return redirect()->route('menu.index');
     }
+
+    public function confirm($id)
+    {
+        $details = DetailEloquent::where('order_id',$id)->get();
+        foreach ($details as $detail){
+            $detail->status=2;
+            $detail->save();
+        }
+        return redirect()->route('menu.index');
+    }
 }

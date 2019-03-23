@@ -35,3 +35,6 @@ Route::get('/order/{id}/item',['as' => 'order.item.index' , 'uses' => 'OrderItem
 
 /*取消已點選餐點*/
 Route::delete('/order/{id}/item/{item}',['as' => 'order.item.destroy' , 'uses' => 'OrderItemController@destroy']);
+
+/*顧客確認點餐*/
+Route::patch('/order/{id}/confirm',['as' => 'order.confirm' , 'uses' => 'OrderItemController@confirm']);
