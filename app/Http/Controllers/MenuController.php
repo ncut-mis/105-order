@@ -17,13 +17,13 @@ class MenuController extends Controller
     public function index()
     {
         $restaurant= auth()->user()->restaurant;
-
+        $orders=OrderEloquent::where('customer_id',Auth::user()->id)->get();
 
         $meal = MealEloquent::where('restaurant_id', Auth::user()->restaurant_id)->get();
 
 
 
-        $data=['meals'=>$meal]+['restaurant'=>$restaurant];
+        $data=['meals'=>$meal]+['restaurant'=>$restaurant]+['orders'=>$orders];
         return view('menu',$data);
     }
 

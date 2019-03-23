@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{$restaurant->name}}-Menu</title>
+    <title>點餐明細</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -17,19 +17,8 @@
 
 
 <body>
-<br>
 
-<br>
-@foreach($orders as $order)
-    <form method="POST" action="/order/{{$order->id}}/item">
-        {{ csrf_field() }}
-        {{ method_field('get') }}
-                <button type="submit" class="btn btn-success">
-                    <i class="fa fa-plus"></i> 點餐明細 </button>
 
-    </form>
-
-    <br>
 <div class="row">
     <div class="col-lg-12">
         <div class="table-responsive">
@@ -38,30 +27,33 @@
                 <tr>
 
                     <th width="200" style="text-align: center">圖</th>
-                    <th width="200" style="text-align: center">菜名</th>
-                    <th width="200" style="text-align: center">價格</th>
+                    <th width="200" style="text-align: center">餐點名稱</th>
                     <th width="200" style="text-align: center">數量</th>
+                    <th width="100" style="text-align: center">價錢</th>
                     <th width="70" style="text-align: center">操作</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                @foreach($meals as $meal)
-                    <form method="POST" action="/order/{{$meal->id}}/item">
+                @foreach($detail as $de)
+                    <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
                         {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
+
                         <tr>
 
-                            <td style="text-align: center"><img src="{{$meal->photo}}"width="80" height="40"></td>
-                            <td style="text-align: center">{{$meal->name}}</td>
-                            <td style="text-align: center">{{$meal->price}}</td>
-                            <td style="text-align: center"><input type="text" name="quantity"></td>
+                            <td style="text-align: center"><img src="{{$de->photo}}"width="80" height="40"></td>
+                            <td style="text-align: center">{{$de->name}}</td>
+                            <td style="text-align: center">{{$de->quantity}}</td>
+                            <td style="text-align: center">{{$de->price}}*{{$de->quantity}}</td>
                             <td style="text-align: center">
-                                <input type="hidden" name="order_id" value=" {{$order->id}}">
                                 <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-plus"></i>我要這個
+                                    <i class="fa fa-plus"></i>我不要了
                                 </button>
 
                             </td>
+
+
                         </tr>
                     </form>
 
@@ -70,10 +62,15 @@
 
                 </tbody>
 
-    </table >
+            </table >
         </div>
     </div>
-    </div>
-@endforeach
+</div>
+
+
+
+
 </body>
+
+
 </html>
