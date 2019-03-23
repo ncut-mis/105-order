@@ -5,10 +5,10 @@ use \App\Customer as CustomerEloquent;
 use \App\CouponsStatus as CouponsStatusEloquent;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Member extends Model
+class Member extends Authenticatable
 {
     use Notifiable;
     protected $table = 'members';

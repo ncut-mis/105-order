@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+/*登入AND驗證(未完成)*/
+Route::get('/customer/{customer}/verify',['as' => 'customer.verify' , 'uses' => 'CustomerController@index']);

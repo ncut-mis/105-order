@@ -6,8 +6,8 @@ use \App\Order as OrderEloquent;
 use \App\Restaurant as RestaurantEloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-
-class Customer extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Customer extends Authenticatable
 {
     use Notifiable;
     protected $table = 'customers';
