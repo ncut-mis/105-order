@@ -35,7 +35,7 @@
                 </thead>
                 <tbody>
 
-                @foreach($detail as $de)
+                @foreach($item as $de)
                     <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
@@ -56,11 +56,13 @@
 
                         </tr>
                     </form>
-                    <form method="POST" action="/order/{{$de->order_id}}/confirm">
-                    {{ csrf_field() }}
-                        {{ method_field('PATCH') }}
+
 
                 @endforeach
+
+                        <form method="POST" action="/order/{{$de->order_id}}/confirm">
+                            {{ csrf_field() }}
+                            {{ method_field('PATCH') }}
                         <button type="submit" class="btn btn-success">
                             <i class="fa fa-plus"></i>送出點單
                         </button>

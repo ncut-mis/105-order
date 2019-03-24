@@ -5,13 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use \Carbon\Carbon as Carbon;
 use Illuminate\Http\Request;
-use App\Customer as CustomerEloquent;
-use App\User as UserEloquent;
-use App\Order as OrderEloquent;
-use App\Detail as DetailEloquent;
-use App\Meal as MealEloquent;
-use App\MealType as MealTypeEloquent;
-use App\Restaurant as RestaurantTypeEloquent;
+use App\Item as ItemEloquent;
 
 class OrderItemController extends Controller
 {
@@ -22,7 +16,7 @@ class OrderItemController extends Controller
         $time = Carbon::now();
 
 
-        DetailEloquent::create( [
+        ItemEloquent::create( [
             'order_id'=>$request['order_id'],
             'meal_id'=>$id,
             'quantity'=>$request['quantity'],
@@ -34,26 +28,26 @@ class OrderItemController extends Controller
 
     public function index($id)
     {
-        $detail = DetailEloquent::join('meals','details.meal_id','=','meals.id')
+        $items = ItemEloquent::join('meals','items.meal_id','=','meals.id')
             ->where('order_id',$id)
-            ->select('details.id','details.meal_id','meals.photo','meals.name','meals.price','details.quantity','details.status','details.updated_at','details.order_id')
+            ->select('items.id','items.meal_id','meals.photo','meals.name','meals.price','items.quantity','items.status','items.updated_at','items.order_id')
             ->get();
 
-        $data = ['detail' => $detail,];
+        $data = ['item' => $items,];
         return view('item',$data);
     }
     public function destroy($id,$item)
     {
-        DetailEloquent::destroy($item);
+        ItemEloquent::destroy($item);
         return redirect()->route('menu.index');
     }
 
     public function confirm($id)
     {
-        $details = DetailEloquent::where('order_id',$id)->get();
-        foreach ($details as $detail){
-            $detail->status=2;
-            $detail->save();
+        $items = ItemEloquent::where('order_id',$id)->get();
+        foreach ($items as $item){
+            $item->status=3;
+            $item->save();
         }
         return redirect()->route('menu.index');
     }
