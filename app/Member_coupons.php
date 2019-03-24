@@ -1,15 +1,15 @@
 <?php
 
 namespace App;
-use \App\User as UserEloquent;
+use \App\Member as MemberEloquent;
 use \App\Order as OrderEloquent;
 use \App\Coupon as CouponEloquent;
 use Illuminate\Database\Eloquent\Model;
 
-class CouponsStatus extends Model
+class Member_coupons extends Model
 {
-    public function user(){
-        return $this->belongsTo(UserEloquent::class);
+    public function  member(){
+        return $this->belongsTo( MemberEloquent::class);
     }
     public function order(){
         return $this->belongsTo(OrderEloquent::class);

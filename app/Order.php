@@ -4,8 +4,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use \App\Customer as CustomerEloquent;
 use \App\Restaurant as RestaurantEloquent;
-use \App\Detail as DetailEloquent;
-use \App\CouponsStatus as CouponsStatusEloquent;
+use \App\Item as ItemEloquent;
+use \App\Member_coupons as Member_couponsEloquent;
 use \App\OrderTable as OrderTableEloquent;
 use Illuminate\Database\Eloquent\Model;
 class Order extends Model
@@ -28,11 +28,11 @@ class Order extends Model
     public function restaurant(){
         return $this->hasOne(RestaurantEloquent::class);
     }
-    public function detail(){
-        return $this->hasMany(DetailEloquent::class);
+    public function item(){
+        return $this->hasMany(ItemEloquent::class);
     }
-    public function CouponsStatus(){
-        return $this->hasone(CouponsStatusEloquent::class);
+    public function member_coupons(){
+        return $this->hasone(Member_couponsEloquent::class);
     }
     public function OrderTable(){
         return $this->hasmany(OrderTableEloquent::class);

@@ -8,14 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Table extends Model
 {
-    protected $fillable = [
-        'restaurant_id',
-        'table',
-        'status',
-        'row',
-        'col',
-    ];
-
     public function restaurant(){
         return $this->belongsTo(RestaurantEloquent::class);
     }
