@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meal extends Model
 {
-    public function item(){
-        return $this->belongsTo(ItemEloquent::class);
+    public function items(){
+        return $this->hasMany(ItemEloquent::class);
     }
     public function restaurant(){
         return $this->belongsTo(RestaurantEloquent::class);
@@ -19,6 +19,6 @@ class Meal extends Model
         return $this->hasMany(MealKeywordEloquent::class);
     }
     public function category(){
-        return $this->hasone(CategoryTypeEloquent::class);
+        return $this->belongsTo(CategoryEloquent::class);
     }
 }

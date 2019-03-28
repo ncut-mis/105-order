@@ -10,7 +10,7 @@ class MealKeyword extends Model
     public function meal(){
         return $this->belongsTo(MealEloquent::class);
     }
-    public function keyword(){
+    public function keywords(){
         return $this->hasMany(KeywordEloquent::class);
     }
 }

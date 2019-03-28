@@ -23,18 +23,18 @@ class Order extends Model
     ];
 
     public function customer(){
-        return $this->belongsTo(CustomerEloquent::class);
+        return $this->hasOne(CustomerEloquent::class);
     }
     public function restaurant(){
-        return $this->hasOne(RestaurantEloquent::class);
+        return $this->belongsTo(RestaurantEloquent::class);
     }
-    public function item(){
+    public function items(){
         return $this->hasMany(ItemEloquent::class);
     }
     public function member_coupons(){
         return $this->hasone(Member_couponsEloquent::class);
     }
-    public function OrderTable(){
+    public function OrderTables(){
         return $this->hasmany(OrderTableEloquent::class);
     }
 }

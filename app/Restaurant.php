@@ -15,22 +15,22 @@ class Restaurant extends Model
     public function staff(){
         return $this->hasMany(StaffEloquent::class);
     }
-    public function post(){
+    public function posts(){
         return $this->hasMany(PostEloquent::class);
     }
-    public function coupon(){
+    public function coupons(){
         return $this->hasMany(CouponEloquent::class);
     }
-    public function meal(){
+    public function meals(){
         return $this->hasMany(MealEloquent::class);
     }
-    public function order(){
+    public function orders(){
         return $this->hasMany(OrderEloquent::class);
     }
-    public function table(){
+    public function tablse(){
         return $this->hasMany(TableEloquent::class);
     }
-    public function customer(){
+    public function customers(){
         return $this->hasMany(CustomerEloquent::class);
     }
 }

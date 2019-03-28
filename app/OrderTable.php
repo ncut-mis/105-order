@@ -15,7 +15,7 @@ class OrderTable extends Model
     public function order(){
         return $this->belongsTo(OrderEloquent::class);
     }
-    public function table(){
-        return $this->hasOne(TableEloquent::class);
+    public function tables(){
+        return $this->hasMany(TableEloquent::class);
     }
 }

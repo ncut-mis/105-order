@@ -15,7 +15,7 @@ class Customer extends Authenticatable
         return $this->belongsTo(MemberEloquent::class);
     }
     public function order(){
-        return $this->hasMany(OrderEloquent::class);
+        return $this->belongsTo(OrderEloquent::class);
     }
     public function Restaurant(){
         return $this->belongsTo(RestaurantEloquent::class);
