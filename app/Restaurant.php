@@ -27,10 +27,11 @@ class Restaurant extends Model
     public function orders(){
         return $this->hasMany(OrderEloquent::class);
     }
-    public function tablse(){
+    public function tables(){
         return $this->hasMany(TableEloquent::class);
     }
     public function customers(){
         return $this->hasMany(CustomerEloquent::class);
     }
+
 }

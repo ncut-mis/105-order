@@ -23,7 +23,7 @@ class Order extends Model
     ];
 
     public function customer(){
-        return $this->hasOne(CustomerEloquent::class);
+        return $this->belongsTo(CustomerEloquent::class);
     }
     public function restaurant(){
         return $this->belongsTo(RestaurantEloquent::class);
