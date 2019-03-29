@@ -18,7 +18,9 @@
 
 <body>
 
-
+<script>
+    var total ="total";
+    </script>
 <div class="row">
     <div class="col-lg-12">
         <div class="table-responsive">
@@ -42,10 +44,10 @@
 
                         <tr>
 
-                            <td style="text-align: center"><img src="{{$de->photo}}"width="80" height="40"></td>
-                            <td style="text-align: center">{{$de->name}}</td>
+                            <td style="text-align: center"><img src="{{$de->meal->photo}}"width="80" height="40"></td>
+                            <td style="text-align: center">{{$de->meal->name}}</td>
                             <td style="text-align: center">{{$de->quantity}}</td>
-                            <td style="text-align: center">{{$de->price*$de->quantity}}</td>
+                            <td style="text-align: center">{{$de->meal->price*$de->quantity}}</td>
                             <td style="text-align: center">
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-plus"></i>我不要了

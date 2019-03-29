@@ -1,24 +1,31 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Auth;
 use \Carbon\Carbon as Carbon;
 use Illuminate\Http\Request;
-use App\Item as ItemEloquent;
-
+use App\Item;
+use App\Order;
 class OrderItemController extends Controller
 {
-
     public function store(Request $request,$id)
     {
+        $items=Item::where('order_id',$id)->where('meal_id',$request->meal_id)->get();
+
+        if (count($items) > 0){
+
+            foreach ($items as $item){
+                $item->quantity=$request['quantity']+$item['quantity'];
+                $item->save();
+            }
+
+            return redirect()->route('menu.index');
+        }
         $qu='1';
         $time = Carbon::now();
 
-
-        ItemEloquent::create( [
-            'order_id'=>$request['order_id'],
-            'meal_id'=>$id,
+        Item::create( [
+            'order_id'=>$id,
+            'meal_id'=>$request['meal_id'],
             'quantity'=>$request['quantity'],
             'status'=>$qu,
             'EndTime'=> $time,
@@ -26,25 +33,20 @@ class OrderItemController extends Controller
         return redirect()->route('menu.index');
     }
 
-    public function index($id)
+    public function index(Order $order)
     {
-        $items = ItemEloquent::join('meals','items.meal_id','=','meals.id')
-            ->where('order_id',$id)
-            ->select('items.id','items.meal_id','meals.photo','meals.name','meals.price','items.quantity','items.status','items.updated_at','items.order_id')
-            ->get();
-
+        $items=$order->items;
         $data = ['item' => $items,];
         return view('item',$data);
     }
     public function destroy($id,$item)
     {
-        ItemEloquent::destroy($item);
+        Item::destroy($item);
         return redirect()->route('menu.index');
     }
-
     public function confirm($id)
     {
-        $items = ItemEloquent::where('order_id',$id)->get();
+        $items = Item::where('order_id',$id)->get();
         foreach ($items as $item){
             $item->status=3;
             $item->save();
