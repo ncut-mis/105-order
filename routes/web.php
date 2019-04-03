@@ -38,3 +38,7 @@ Route::delete('/order/{id}/item/{item}',['as' => 'order.item.destroy' , 'uses' =
 
 /*顧客確認點餐*/
 Route::patch('/order/{id}/confirm',['as' => 'order.confirm' , 'uses' => 'OrderItemController@confirm']);
+
+
+/*查詢點餐明細Ajax*/
+Route::get('/order/{order}/item/test',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index2']);

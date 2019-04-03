@@ -9,6 +9,8 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+    <script href= "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+    </script>
     <!-- Styles -->
     <style>
     </style>
@@ -17,9 +19,33 @@
 
 <body>
 <br>
-
+<div id="test"></div>
+<button type="button" onclick="myFunction();">及時明細</button>
 <br>
 @foreach($orders as $order)
+
+    <script>
+        function alertFunc(){
+            var xhr =new XMLHttpRequest();
+            xhr.open("get","/order/{{$order->id}}/item/test",true);
+            xhr.onload=function(){
+            var test=document.getElementById("test");
+            test.innerHTML=this.responseText;
+            };
+
+            xhr.send();
+        }
+
+        var myVar;
+
+        function myFunction() {
+            myVar = setInterval(alertFunc, 3000);
+        }
+
+    </script>
+
+
+
     <form method="POST" action="/order/{{$order->id}}/item">
         {{ csrf_field() }}
         {{ method_field('get') }}
@@ -27,6 +53,7 @@
             <i class="fa fa-plus"></i> 點餐明細 </button>
 
     </form>
+
 
     <br>
     <div class="row">
