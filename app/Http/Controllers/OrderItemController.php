@@ -9,17 +9,7 @@ class OrderItemController extends Controller
 {
     public function store(Request $request,$id)
     {
-        $items=Item::where('order_id',$id)->where('meal_id',$request->meal_id)->get();
-
-        if (count($items) > 0){
-
-            foreach ($items as $item){
-                $item->quantity=$request['quantity']+$item['quantity'];
-                $item->save();
-            }
-
-            return redirect()->route('menu.index');
-        }
+      
         $qu='1';
         $time = Carbon::now();
 
@@ -32,13 +22,21 @@ class OrderItemController extends Controller
         ]);
         return redirect()->route('menu.index');
     }
-
     public function index(Order $order)
     {
         $items=$order->items;
         $data = ['item' => $items,];
         return view('item',$data);
+
     }
+    public function index2(Order $order)
+    {
+        $items=$order->items;
+        $data = ['item' => $items,];
+        return view('test',$data);
+
+    }
+
     public function destroy($id,$item)
     {
         Item::destroy($item);
@@ -53,4 +51,6 @@ class OrderItemController extends Controller
         }
         return redirect()->route('menu.index');
     }
+
+
 }

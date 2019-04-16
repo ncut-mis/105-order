@@ -1,26 +1,5 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>點餐明細</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    <!-- Styles -->
-    <style>
-
-    </style>
-</head>
 
 
-<body>
-
-<script>
-    var total ="total";
-    </script>
 <div class="row">
     <div class="col-lg-12">
         <div class="table-responsive">
@@ -62,14 +41,14 @@
 
                 @endforeach
 
-                        <form method="POST" action="/order/{{$de->order_id}}/confirm">
-                            {{ csrf_field() }}
-                            {{ method_field('PATCH') }}
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-plus"></i>送出點單
-                        </button>
-                    </form>
-                        　<input type="button" value="繼續點餐" onclick="location.href='/menu'">
+                <form method="POST" action="/order/{{$de->order_id}}/confirm">
+                    {{ csrf_field() }}
+                    {{ method_field('PATCH') }}
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-plus"></i>送出點單
+                    </button>
+                </form>
+                　<input type="button" value="繼續點餐" onclick="location.href='/menu'">
                 </tbody>
 
             </table >
@@ -77,11 +56,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-</body>
-
-
-</html>
