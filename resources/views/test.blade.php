@@ -24,6 +24,9 @@
                         <tr>
 
                             <td style="text-align: center"><img src="{{url('img/meal/'.$de->meal->photo)}}"width="80" height="40"></td>
+
+                            <td style="text-align: center"><img src="{{$de->meal->photo}}"width="80" height="40"></td>
+
                             <td style="text-align: center">{{$de->meal->name}}</td>
                             <td style="text-align: center">{{$de->quantity}}</td>
                             <td style="text-align: center">{{$de->meal->price*$de->quantity}}</td>

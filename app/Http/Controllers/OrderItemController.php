@@ -9,7 +9,7 @@ class OrderItemController extends Controller
 {
     public function store(Request $request,$id)
     {
-      
+
         $qu='1';
         $time = Carbon::now();
 
