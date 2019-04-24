@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 /*登入AND驗證(未完成)*/
-Route::get('/customer/{customer}/verify',['as' => 'customer.verify' , 'uses' => 'CustomerController@index']);
+Route::get('/customer/{customer}/verify/{verification_code}',['as' => 'customer.verify' , 'uses' => 'CustomerController@index']);
 
 /*瀏覽菜單*/
 Route::get('/menu',['as' => 'menu.index' , 'uses' => 'MenuController@index']);
@@ -37,8 +37,14 @@ Route::get('/order/{order}/item',['as' => 'order.item.index' , 'uses' => 'OrderI
 Route::delete('/order/{id}/item/{item}',['as' => 'order.item.destroy' , 'uses' => 'OrderItemController@destroy']);
 
 /*顧客確認點餐*/
-Route::patch('/order/{id}/confirm',['as' => 'order.confirm' , 'uses' => 'OrderItemController@confirm']);
+Route::patch('/order/{order}/confirm',['as' => 'order.confirm' , 'uses' => 'OrderController@confirm']);
 
 
 /*查詢點餐明細Ajax*/
 Route::get('/order/{order}/item/test',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index2']);
+
+/*確認結帳*/
+Route::get('/order/{order}/checkout',['as' => 'order.checkout' , 'uses' => 'OrderController@checkout']);
+
+/*使用優惠卷*/
+Route::post('/order/{order}/coupons/{id}',['as' => 'member.coupon' , 'uses' => 'MemberCouponController@create']);

@@ -17,10 +17,11 @@
 
 
 <body>
+@php
+    $total=0;
 
-<script>
-    var total ="total";
-    </script>
+@endphp
+
 <div class="row">
     <div class="col-lg-12">
         <div class="table-responsive">
@@ -31,7 +32,7 @@
                     <th width="200" style="text-align: center">圖</th>
                     <th width="200" style="text-align: center">餐點名稱</th>
                     <th width="200" style="text-align: center">數量</th>
-                    <th width="150" style="text-align: center">總價</th>
+                    <th width="150" style="text-align: center">價格</th>
                     <th width="100" style="text-align: center">操作</th>
                 </tr>
                 </thead>
@@ -55,10 +56,14 @@
 
                             </td>
 
+                            @php
+                                $total=$total+$de->meal->price;
+
+                            @endphp
 
                         </tr>
-                    </form>
 
+                    </form>
 
                 @endforeach
 
@@ -73,7 +78,9 @@
                 </tbody>
 
             </table >
-
+            <div style="text-align:center;">
+                總價{{$total}}
+            </div>
         </div>
     </div>
 </div>

@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member_coupons extends Model
 {
+
+    protected $fillable = [
+        'coupon_id',
+        'member_id',
+        'order_id',
+        'status',
+        'UseTime'
+
+    ];
     public function  member(){
         return $this->belongsTo( MemberEloquent::class);
     }

@@ -20,32 +20,24 @@
 <body>
 <br>
 <div id="test"></div>
-<button type="button" onclick="myFunction();">及時明細</button>
+<button type="button" onclick="myFunction();">AJAX明細</button>
 <br>
 
 @foreach($orders as $order)
-
     <script>
         function alertFunc(){
             var xhr =new XMLHttpRequest();
             xhr.open("get","/order/{{$order->id}}/item/test",true);
             xhr.onload=function(){
-            var test=document.getElementById("test");
-            test.innerHTML=this.responseText;
+                var test=document.getElementById("test");
+                test.innerHTML=this.responseText;
             };
-
             xhr.send();
         }
-
         var myVar;
-
         function myFunction() {
             myVar = setInterval(alertFunc, 3000);
         }
-
-
-
-
     </script>
 
 
@@ -57,8 +49,13 @@
             <i class="fa fa-plus"></i> 點餐明細 </button>
 
     </form>
-
-
+    <form method="POST" action="/order/{{$order->id}}/confirm">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
+        <button type="submit" class="btn btn-success">
+            <i class="fa fa-plus"></i>送出點單
+        </button>
+    </form>
     <br>
     <div class="row">
         <div class="col-lg-12">

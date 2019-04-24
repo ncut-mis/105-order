@@ -5,6 +5,8 @@ use \Carbon\Carbon as Carbon;
 use Illuminate\Http\Request;
 use App\Item;
 use App\Order;
+use App\Dining_Table;
+use App\Table;
 class OrderItemController extends Controller
 {
     public function store(Request $request,$id)
@@ -34,15 +36,15 @@ class OrderItemController extends Controller
         $items=$order->items;
         $data = ['item' => $items,];
         return view('test',$data);
-
     }
+
 
     public function destroy($id,$item)
     {
         Item::destroy($item);
         return redirect()->route('menu.index');
     }
-    public function confirm($id)
+    public function confirm1($id)
     {
         $items = Item::where('order_id',$id)->get();
         foreach ($items as $item){
@@ -52,5 +54,12 @@ class OrderItemController extends Controller
         return redirect()->route('menu.index');
     }
 
-
+    public function confirm($id)
+    {
+        $dining_table = Dining_Table::where('order_id',$id)->first();
+        $table = Table::find($dining_table['table_id']);
+        $table->status="等餐中";
+        $table->save();
+        return redirect()->route('menu.index');
+    }
 }

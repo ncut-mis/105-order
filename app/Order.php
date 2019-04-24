@@ -6,7 +6,7 @@ use \App\Customer as CustomerEloquent;
 use \App\Restaurant as RestaurantEloquent;
 use \App\Item as ItemEloquent;
 use \App\Member_coupons as Member_couponsEloquent;
-use \App\OrderTable as OrderTableEloquent;
+use \App\Dining_Table as Dining_TableEloquent;
 use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
@@ -19,7 +19,9 @@ class Order extends Model
         'people',
         'time',
         'total',
+        'status',
         'PayType'
+
     ];
 
     public function customer(){
@@ -34,7 +36,7 @@ class Order extends Model
     public function member_coupons(){
         return $this->hasone(Member_couponsEloquent::class);
     }
-    public function OrderTables(){
-        return $this->hasmany(OrderTableEloquent::class);
+    public function dining_Tables(){
+        return $this->hasmany(Dining_TableEloquent::class);
     }
 }

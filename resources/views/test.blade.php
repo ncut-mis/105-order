@@ -8,9 +8,8 @@
                 <tr>
 
                     <th width="200" style="text-align: center">圖</th>
-                    <th width="200" style="text-align: center">餐點名稱</th>
                     <th width="200" style="text-align: center">數量</th>
-                    <th width="150" style="text-align: center">總價</th>
+                    <th width="150" style="text-align: center">價格</th>
                     <th width="100" style="text-align: center">操作</th>
                 </tr>
                 </thead>
@@ -25,11 +24,11 @@
 
                             <td style="text-align: center"><img src="{{url('img/meal/'.$de->meal->photo)}}"width="80" height="40"></td>
 
-                            <td style="text-align: center"><img src="{{$de->meal->photo}}"width="80" height="40"></td>
+
 
                             <td style="text-align: center">{{$de->meal->name}}</td>
                             <td style="text-align: center">{{$de->quantity}}</td>
-                            <td style="text-align: center">{{$de->meal->price*$de->quantity}}</td>
+                            <td style="text-align: center">{{$de->meal->price}}</td>
                             <td style="text-align: center">
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-plus"></i>我不要了
@@ -44,15 +43,7 @@
 
                 @endforeach
 
-                <form method="POST" action="/order/{{$de->order_id}}/confirm">
-                    {{ csrf_field() }}
-                    {{ method_field('PATCH') }}
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa fa-plus"></i>送出點單
-                    </button>
-                </form>
-                　<input type="button" value="繼續點餐" onclick="location.href='/menu'">
-                </tbody>
+
 
             </table >
 
