@@ -11,7 +11,7 @@ use App\Coupon;
 
 class OrderController extends Controller
 {
-    
+
 
     public function confirm(Order $order)
     {

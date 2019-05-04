@@ -9,6 +9,6 @@ class MenuController extends Controller
         $orders=Auth::user()->order;
         $meal = $restaurant->meals;
         $data=['meals'=>$meal]+['restaurant'=>$restaurant]+['orders'=>$orders];
-        return view('menu',$data);
+        return view('test_menu',$data);
     }
 }

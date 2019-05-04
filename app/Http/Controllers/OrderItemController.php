@@ -35,7 +35,7 @@ class OrderItemController extends Controller
     {
         $items=$order->items;
         $data = ['item' => $items,];
-        return view('test',$data);
+        return $data;
     }
 
 

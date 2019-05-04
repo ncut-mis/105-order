@@ -31,6 +31,10 @@
             xhr.onload=function(){
                 var test=document.getElementById("test");
                 test.innerHTML=this.responseText;
+
+
+
+
             };
             xhr.send();
         }
