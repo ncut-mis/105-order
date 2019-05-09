@@ -74,19 +74,25 @@
 		      <!--  Image based logo  -->
           <!-- <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="Logo img"></a>  -->
 
-
+          @foreach($orders as $order)
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="#mu-restaurant-menu">MENU</a></li>
-            <li><a href="#mu-chef">ITEM</a></li>
+            <li><a href="index.html"> HOME </a></li>
+            <li><a href="#mu-restaurant-menu"> MENU </a></li>
+            <li><a href="#mu-chef"> ITEM </a></li>
+
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
   </header>
   <meta http-equiv="refresh" content="5">
+
+
+
+
   <!-- End header section -->
 
 
@@ -103,7 +109,7 @@
   <!-- End Counter Section -->
 
   <!-- Start Restaurant Menu -->
-  @foreach($orders as $order)
+
   <section id="mu-restaurant-menu">
     <div class="container">
       <div class="row">
@@ -118,10 +124,10 @@
             <div class="mu-restaurant-menu-content">
               <ul class="nav nav-tabs mu-restaurant-menu">
                 <li class="active"><a href="#all" data-toggle="tab">All</a></li>
-                <li><a href="#meals" data-toggle="tab">未完成</a></li>
-                <li><a href="#snacks" data-toggle="tab">未完成</a></li>
-                <li><a href="#desserts" data-toggle="tab">未完成</a></li>
-                <li><a href="#drinks" data-toggle="tab">未完成</a></li>
+                <li><a href="#meals" data-toggle="tab">主餐</a></li>
+                <li><a href="#appetizers" data-toggle="tab">開胃品</a></li>
+                <li><a href="#salads" data-toggle="tab">沙拉</a></li>
+                <li><a href="#Appetizer" data-toggle="tab">前菜</a></li>
               </ul>
 
               <!-- Tab panes -->
@@ -182,6 +188,185 @@
 
 
 
+                <div class="tab-pane fade in active" id="meals">
+                  <div class="mu-tab-content-area">
+                    <div class="row">
+
+                      <div class="col-md-12">
+
+                        <div class="mu-tab-content-left">
+
+                          <ul class="mu-menu-item-nav">
+                            @foreach($meals as $meal)
+
+                              @if("$meal->category_id" == 1)
+
+
+
+                              <form method="POST" action="/order/{{$order->id}}/item">
+                                {{ csrf_field() }}
+
+
+                                <li>
+                                  <div class="media">
+                                    <div class="media-left">
+                                      <a href="#">
+                                        <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
+                                      </a>
+                                    </div>
+                                    <div class="media-body">
+                                      <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
+                                      <span class="mu-menu-price">${{$meal->price}}</span>
+                                      <br>
+                                      <button type="submit" class="btn btn-success">
+                                        <i class="fa fa-plus"></i>我要這個
+                                      </button>
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
+
+
+                                    </div>
+
+                                  </div>
+
+                                </li>
+                                <input type="hidden" name="quantity" value=1>
+                                <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                              </form>
+                              @endif
+                            @endforeach
+
+
+                          </ul>
+
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="tab-pane fade in active" id="appetizers">
+                  <div class="mu-tab-content-area">
+                    <div class="row">
+
+                      <div class="col-md-12">
+
+                        <div class="mu-tab-content-left">
+
+                          <ul class="mu-menu-item-nav">
+                            @foreach($meals as $meal)
+
+                              @if($meal->category_id == 2 )
+
+
+
+                                <form method="POST" action="/order/{{$order->id}}/item">
+                                  {{ csrf_field() }}
+
+
+                                  <li>
+                                    <div class="media">
+                                      <div class="media-left">
+                                        <a href="#">
+                                          <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
+                                        </a>
+                                      </div>
+                                      <div class="media-body">
+                                        <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
+                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                        <br>
+                                        <button type="submit" class="btn btn-success">
+                                          <i class="fa fa-plus"></i>我要這個
+                                        </button>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
+
+
+                                      </div>
+
+                                    </div>
+
+                                  </li>
+                                  <input type="hidden" name="quantity" value=1>
+                                  <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                </form>
+                              @endif
+                            @endforeach
+
+
+                          </ul>
+
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="tab-pane fade in active" id="salads">
+                  <div class="mu-tab-content-area">
+                    <div class="row">
+
+                      <div class="col-md-12">
+
+                        <div class="mu-tab-content-left">
+
+                          <ul class="mu-menu-item-nav">
+                            @foreach($meals as $meal)
+
+                              @if($meal->category_id == 3 )
+
+
+
+                                <form method="POST" action="/order/{{$order->id}}/item">
+                                  {{ csrf_field() }}
+
+
+                                  <li>
+                                    <div class="media">
+                                      <div class="media-left">
+                                        <a href="#">
+                                          <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
+                                        </a>
+                                      </div>
+                                      <div class="media-body">
+                                        <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
+                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                        <br>
+                                        <button type="submit" class="btn btn-success">
+                                          <i class="fa fa-plus"></i>我要這個
+                                        </button>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
+
+
+                                      </div>
+
+                                    </div>
+
+                                  </li>
+                                  <input type="hidden" name="quantity" value=1>
+                                  <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                </form>
+                              @endif
+                            @endforeach
+
+
+                          </ul>
+
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
 
 
 
@@ -190,8 +375,73 @@
 
 
 
+                <div class="tab-pane fade in active" id="Appetizer">
+                  <div class="mu-tab-content-area">
+                    <div class="row">
 
-                <div class="tab-pane fade" id="drinks">
+                      <div class="col-md-12">
+
+                        <div class="mu-tab-content-left">
+
+                          <ul class="mu-menu-item-nav">
+                            @foreach($meals as $meal)
+
+                              @if($meal->category_id == 4 )
+
+
+
+                                <form method="POST" action="/order/{{$order->id}}/item">
+                                  {{ csrf_field() }}
+
+
+                                  <li>
+                                    <div class="media">
+                                      <div class="media-left">
+                                        <a href="#">
+                                          <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
+                                        </a>
+                                      </div>
+                                      <div class="media-body">
+                                        <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
+                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                        <br>
+                                        <button type="submit" class="btn btn-success">
+                                          <i class="fa fa-plus"></i>我要這個
+                                        </button>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
+
+
+                                      </div>
+
+                                    </div>
+
+                                  </li>
+                                  <input type="hidden" name="quantity" value=1>
+                                  <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                </form>
+                              @endif
+                            @endforeach
+
+
+                          </ul>
+
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="tab-pane fade" id="drink">
                   <div class="mu-tab-content-area">
                     <div class="row">
 
@@ -258,7 +508,7 @@
         </div>
       </div>
 
-    @endforeach
+
   </section>
 
   <!-- End Restaurant Menu -->
@@ -282,10 +532,40 @@
 
                 <!-- End single gallery image -->
 
+  <div id="test"></div>
+  
+  <button type="button" onclick="myFunction();">AJAX明細</button>
+  <br>
                 <!-- start single gallery image -->
+  <script type="text/javascript">
+    function alertFunc(){
+      var xhr =new XMLHttpRequest();
+      xhr.open("get","/order/{{$order->id}}/item/test",true);
+      xhr.onload=function(){
+        var test=document.getElementById("test");
 
-                <!-- End single gallery image -->
+        test.innerHTML=this.response;
 
+
+
+
+      };
+      xhr.send();
+    }
+    var myVar;
+    function myFunction() {
+      myVar = setInterval(alertFunc, 3000);
+    }
+  </script>
+
+
+
+
+
+
+
+      <!-- End single gallery image -->
+  @endforeach
                 <!-- start single gallery image -->
 
                 <!-- End single gallery image -->
