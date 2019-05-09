@@ -88,7 +88,6 @@
       </div>
     </nav>
   </header>
-  <meta http-equiv="refresh" content="5">
 
 
 
@@ -533,8 +532,8 @@
                 <!-- End single gallery image -->
 
   <div id="test"></div>
-  
-  <button type="button" onclick="myFunction();">AJAX明細</button>
+
+  <button type="button" onclick="alertFunc();">AJAX明細</button>
   <br>
                 <!-- start single gallery image -->
   <script type="text/javascript">
@@ -543,19 +542,38 @@
       xhr.open("get","/order/{{$order->id}}/item/test",true);
       xhr.onload=function(){
         var test=document.getElementById("test");
+         var ourData =JSON.parse(this.response);
 
-        test.innerHTML=this.response;
+
+
+        console.log(ourData);
+        for(var i=0, a=1;i<ourData[0].item.length;i++ ,a++){
+          var str="";
+          str ="第"+a+"筆點餐明細 id="+ ourData[0].item[i].id +" 名稱="+ ourData[0].item[i].name +" 價格="+ ourData[0].item[i].price  ;
+
+          alert(str);
+        }
+
+
 
 
 
 
       };
+
+
       xhr.send();
     }
+    <!-- 重複執行Ajax
+
     var myVar;
     function myFunction() {
-      myVar = setInterval(alertFunc, 3000);
+      myVar = setInterval(alertFunc,30000);
     }
+
+
+
+    -->
   </script>
 
 
@@ -565,7 +583,7 @@
 
 
       <!-- End single gallery image -->
-  @endforeach
+
                 <!-- start single gallery image -->
 
                 <!-- End single gallery image -->
@@ -683,7 +701,7 @@
   <!-- End Chef Section -->
 
 
-
+  @endforeach
   <!-- Start Contact section -->
 
   <!-- End Contact section -->

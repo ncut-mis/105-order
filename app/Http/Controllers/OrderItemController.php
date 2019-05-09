@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use \Carbon\Carbon as Carbon;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use App\Item;
 use App\Order;
@@ -33,9 +34,15 @@ class OrderItemController extends Controller
     }
     public function index2(Order $order)
     {
-        $items=$order->items;
-        $data = ['item' => $items,];
-        return $data;
+        $items = Item::join('meals','items.meal_id','=','meals.id')
+        ->where('order_id',$order['id'])
+        ->select('items.id','items.meal_id','meals.photo','meals.name','meals.price','items.quantity','items.status','items.updated_at','items.order_id')
+        ->get();
+
+
+
+        return array(['item' => $items]);
+
     }
 
 
