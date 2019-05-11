@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<style>
+    .button {
+        background-color: #3570af; /* Green */
+        border-radius: 8px;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 8px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+.button1 {background-color: #f44336;} /* Red */
+
+</style>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,29 +85,119 @@
           <!-- LOGO -->
 
            <!--  Text based logo  -->
-          <a class="navbar-brand" href="index.html">{{$restaurant->name}}<span>X</span></a>
+          <a class="navbar-brand" href="#top">{{$restaurant->name}}<span>X</span></a>
 
 		      <!--  Image based logo  -->
           <!-- <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="Logo img"></a>  -->
 
-          @foreach($orders as $order)
+
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-            <li><a href="index.html"> HOME </a></li>
+            <li><a href="#top"> TOP </a></li>
             <li><a href="#mu-restaurant-menu"> MENU </a></li>
+              @if (count($item) > 0)
             <li><a href="#mu-chef"> ITEM </a></li>
-
+@endif
 
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
   </header>
+  <a name="top" id="top"></a>
+  @foreach($orders as $order)
+
+      @if (count($item) > 0)
 
 
 
 
+
+  <!-- Start item Section -->
+  <section id="mu-chef">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="mu-restaurant-menu-area">
+
+                      <div class="mu-title">
+                          <span class="mu-subtitle">點餐明細</span>
+                          <h2>ITEM</h2>
+                         　
+                          <form method="POST" action="/order/{{$order->id}}/confirm">
+                              {{ csrf_field() }}
+                              {{ method_field('PATCH') }}
+
+                              <button type="submit" class="btn btn-success">
+                                  <i class="fal fa-inbox-out"></i>送出餐點
+                              </button>
+
+                          </form>
+                          <br>
+                      </div>
+
+
+
+
+
+
+
+
+                                  <ul class="mu-menu-item-nav">
+                                      @foreach($item as $de)
+                                          <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
+                                              {{ csrf_field() }}
+                                              {{ method_field('DELETE') }}
+
+
+                                                  <li>
+                                                      <div class="media">
+                                                          <div class="media-left">
+                                                              <a href="#">
+                                                                  <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
+                                                              </a>
+                                                          </div>
+                                                          <div class="media-body">
+                                                              <h4 class="media-heading"><a href="#">{{$de->meal->name}}</a></h4>
+                                                              <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
+                                                              <br>
+                                                              <button type="submit" class="btn btn-success">
+                                                                  <i class="fa fa-minus"></i>我不要了
+                                                              </button>
+                                                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
+
+
+                                                          </div>
+
+                                                      </div>
+
+                                                  </li>
+
+
+                                          </form>
+                                      @endforeach
+
+
+                                  </ul>
+
+
+
+
+
+
+
+
+
+
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+      @endif
+  <!-- End Chef Section -->
   <!-- End header section -->
 
 
@@ -116,7 +222,7 @@
           <div class="mu-restaurant-menu-area">
 
             <div class="mu-title">
-              <span class="mu-subtitle">{{$restaurant->name}}</span>
+              <span class="mu-subtitle">菜單</span>
               <h2>OUR MENU</h2>
             </div>
 
@@ -167,6 +273,8 @@
                               </div>
 
                             </li>
+
+
                                 <input type="hidden" name="quantity" value=1>
                                 <input type="hidden" name="meal_id" value=" {{$meal->id}}">
                               </form>
@@ -552,6 +660,8 @@
           str ="第"+a+"筆點餐明細 id="+ ourData[0].item[i].id +" 名稱="+ ourData[0].item[i].name +" 價格="+ ourData[0].item[i].price  ;
 
           alert(str);
+
+            location.href="menu.blade.php?str="+str;
         }
 
 
@@ -564,6 +674,8 @@
 
       xhr.send();
     }
+
+
     <!-- 重複執行Ajax
 
     var myVar;
@@ -575,9 +687,12 @@
 
     -->
   </script>
+  <!--
+
+  echo $_GET['str'];
 
 
-
+          -->
 
 
 
@@ -620,85 +735,7 @@
 
   <!-- End Client Testimonial section -->
 
-  <!-- Start Chef Section -->
-  <section id="mu-chef">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="mu-chef-area">
 
-            <div class="mu-title">
-              <span class="mu-subtitle">點餐明細</span>
-              <h2>ITEM</h2>
-              <span id="total">_</span>　
-
-            </div>
-
-
-
-
-
-
-
-
-
-              <ul class="mu-menu-item-nav">
-                @foreach($item as $de)
-                  <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-
-
-                          <li>
-                              <div class="media">
-                                  <div class="media-left">
-                                      <a href="#">
-                                          <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
-                                      </a>
-                                  </div>
-                                  <div class="media-body">
-                                      <h4 class="media-heading"><a href="#">{{$de->meal->name}}</a></h4>
-
-                                      <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
-                                      <br>
-                                      <button type="submit" class="btn btn-success">
-                                          <i class="fa fa-minus"></i> 我不要了
-                                      </button>
-                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
-
-                                  </div>
-
-                              </div>
-
-                          </li>
-                          <input type="hidden" name="quantity" value=1>
-                          <input type="hidden" name="meal_id" value=" {{$meal->id}}">
-                      </form>
-
-
-
-                  <SCRIPT >
-
-
-                    $total =$total + "{{$de->meal->price}}";
-
-                    document.getElementById("total").innerHTML= "總價:" + $total ;
-
-                  </SCRIPT>
-
-                  @endforeach
-
-
-              </ul>
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Chef Section -->
 
 
   @endforeach
