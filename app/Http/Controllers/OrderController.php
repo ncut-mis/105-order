@@ -14,9 +14,10 @@ class OrderController extends Controller
 
 
     public function confirm(Order $order)
-    {
+    { $restaurant= auth()->user()->restaurant;
+
         $items=$order->items;
-        $data = ['item' => $items,];
+        $data = ['item' => $items,]+['restaurant'=>$restaurant];
 
         $dining_table = Dining_Table::where('order_id',$order['id'])->first();
         $table = Table::find($dining_table['table_id']);
