@@ -95,10 +95,11 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
             <li><a href="#top"> TOP </a></li>
-            <li><a href="#mu-restaurant-menu"> MENU </a></li>
               @if (count($item) > 0)
-            <li><a href="#mu-chef"> ITEM </a></li>
-@endif
+                  <li><a href="#item"> ITEM </a></li>
+              @endif
+              <li><a href="#menu"> MENU </a></li>
+
 
           </ul>
         </div><!--/.nav-collapse -->
@@ -108,95 +109,125 @@
   <a name="top" id="top"></a>
   @foreach($orders as $order)
 
+
+
+
+
       @if (count($item) > 0)
 
+      <section id="mu-restaurant-menu">
+          <a name="item" id="item"></a>
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="mu-restaurant-menu-area">
+
+                          <div class="mu-title">
+                              <span class="mu-subtitle">菜單</span>
+                              <h2>OUR MENU</h2>
+                              <form method="POST" action="/order/{{$order->id}}/confirm">
+                                  {{ csrf_field() }}
+                                  {{ method_field('PATCH') }}
+
+                                  <button type="submit" class="btn btn-success">
+                                      <i ></i>送出餐點
+                                  </button>
+
+                              </form>
+                              <br>
+                          </div>
+
+                          <div class="mu-restaurant-menu-content">
+
+                              <!-- Tab panes -->
+                              <div class="tab-content">
+                                  <div class="tab-pane fade in active" >
+                                      <div class="mu-tab-content-area">
+                                          <div class="row">
+
+                                              <div class="col-md-12">
+
+                                                  <div class="mu-tab-content-left">
+
+                                                      <ul class="mu-menu-item-nav">
+                                                          @foreach($item as $de)
+                                                              <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
+                                                                  {{ csrf_field() }}
+                                                                  {{ method_field('DELETE') }}
+
+
+
+                                                                  <li>
+                                                                      <div class="media">
+                                                                          <div class="media-left">
+                                                                              <a href="#">
+                                                                                  <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
+                                                                              </a>
+                                                                          </div>
+                                                                          <div class="media-body">
+                                                                              <h4 class="media-heading"><a href="#">{{$de->meal->name}}</a></h4>
+                                                                              <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
+                                                                              <br>
+                                                                              <button type="submit" class="btn btn-success">
+                                                                                  <i class="fa fa-minus"></i>我不要了
+                                                                              </button>
+                                                                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
+
+
+                                                                          </div>
+
+                                                                      </div>
+
+                                                                  </li>
+
+                                                              </form>
+                                                          @endforeach
+
+
+                                                      </ul>
+
+                                                  </div>
+                                              </div>
+
+
+
+                                          </div>
+                                      </div>
+                                  </div>
 
 
 
 
-  <!-- Start item Section -->
-  <section id="mu-chef">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-12">
-                  <div class="mu-restaurant-menu-area">
+                                      </div>
+                                  </div>
 
-                      <div class="mu-title">
-                          <span class="mu-subtitle">點餐明細</span>
-                          <h2>ITEM</h2>
-                         　
-                          <form method="POST" action="/order/{{$order->id}}/confirm">
-                              {{ csrf_field() }}
-                              {{ method_field('PATCH') }}
 
-                              <button type="submit" class="btn btn-success">
-                                  <i class="fal fa-inbox-out"></i>送出餐點
-                              </button>
 
-                          </form>
-                          <br>
+
+
+
+
+
+
+
+
                       </div>
-
-
-
-
-
-
-
-
-                                  <ul class="mu-menu-item-nav">
-                                      @foreach($item as $de)
-                                          <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
-                                              {{ csrf_field() }}
-                                              {{ method_field('DELETE') }}
-
-
-                                                  <li>
-                                                      <div class="media">
-                                                          <div class="media-left">
-                                                              <a href="#">
-                                                                  <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
-                                                              </a>
-                                                          </div>
-                                                          <div class="media-body">
-                                                              <h4 class="media-heading"><a href="#">{{$de->meal->name}}</a></h4>
-                                                              <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
-                                                              <br>
-                                                              <button type="submit" class="btn btn-success">
-                                                                  <i class="fa fa-minus"></i>我不要了
-                                                              </button>
-                                                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
-
-                                                          </div>
-
-                                                      </div>
-
-                                                  </li>
-
-
-                                          </form>
-                                      @endforeach
-
-
-                                  </ul>
-
-
-
-
-
-
-
-
-
-
-
                   </div>
               </div>
           </div>
-      </div>
-  </section>
+
+
+      </section>
       @endif
+
+
+
+
+
+
+
+
+
   <!-- End Chef Section -->
   <!-- End header section -->
 
@@ -216,6 +247,7 @@
   <!-- Start Restaurant Menu -->
 
   <section id="mu-restaurant-menu">
+      <a name="menu" id="menu"></a>
     <div class="container">
       <div class="row">
         <div class="col-md-12">

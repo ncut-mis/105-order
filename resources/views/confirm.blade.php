@@ -95,7 +95,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
                     <li><a href="#top"> TOP </a></li>
-                    <li><a href="#mu-restaurant-menu"> ITEM </a></li>
+                    <li><a href="#item"> ITEM </a></li>
 
                 </ul>
             </div><!--/.nav-collapse -->
@@ -113,11 +113,6 @@
     @endforeach
 </header>
 <a name="top" id="top"></a>
-
-
-
-    <!-- Start item Section -->
-    <section id="mu-chef">
 
         <script>
             function alertFunc(){
@@ -141,25 +136,8 @@
 
 
         </script>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="mu-restaurant-menu-area">
 
 
-                        <div id="test"  style="text-align:center;">
-
-                        </div>
-
-
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- End Chef Section -->
     <!-- End header section -->
 
@@ -177,101 +155,102 @@
     <!-- End Counter Section -->
 
     <!-- Start Restaurant Menu -->
+<section id="mu-restaurant-menu">
+    <div id="test"  style="text-align:center;">
+        <br><br><br> <br><br>
+    </div>
+    <br>
+    <a name="item" id="item"></a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mu-restaurant-menu-area">
 
-    <section id="mu-restaurant-menu">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="mu-restaurant-menu-area">
+                    <div class="mu-title">
+                        <span class="mu-subtitle">點餐明細</span>
+                        <h2>總價 {{$total}}</h2>
 
-                        <div class="mu-title">
-                            <span class="mu-subtitle">點餐明細</span>
-                            <h2>總價 {{$total}}</h2>
-                        </div>
+                    </div>
 
+                    <div class="mu-restaurant-menu-content">
 
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" >
+                                <div class="mu-tab-content-area">
+                                    <div class="row">
 
+                                        <div class="col-md-12">
 
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active" id="all">
-                                    <div class="mu-tab-content-area">
-                                        <div class="row">
+                                            <div class="mu-tab-content-left">
 
-                                            <div class="col-md-12">
-
-                                                <div class="mu-tab-content-left">
-
-                                                    <ul class="mu-menu-item-nav">
-
-
-
-
-
-
-                                                            @foreach($item as $de)
+                                                <ul class="mu-menu-item-nav">
+                                                    @foreach($item as $de)
 
 
 
 
+                                                            <li>
+                                                                <div class="media">
+                                                                    <div class="media-left">
+                                                                        <a href="#">
+                                                                            <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading"><a href="#">{{$de->meal->name}}</a></h4>
+                                                                        <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
+                                                                        <br>
 
+                                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
-
-
-                                                                <li>
-                                                                    <div class="media">
-                                                                        <div class="media-left">
-                                                                            <a href="#">
-                                                                                <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="media-body">
-                                                                            <h4 class="media-heading"><a href="#">{{$de->meal->name}}</a></h4>
-                                                                            <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
-                                                                            <br>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
-
-                                                                        </div>
 
                                                                     </div>
 
-                                                                </li>
+                                                                </div>
+
+                                                            </li>
 
 
                                                     @endforeach
-                                                    </ul>
+
+
+                                                </ul>
+
+                                            </div>
+                                        </div>
 
 
 
-                                                </div>
-
-
-                                                  </div>
-
-
-
-                                           </div>
-                                          </div>
-
+                                    </div>
                                 </div>
-
-
-
-
                             </div>
 
 
 
 
-
+                        </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>
+    </div>
 
 
-    </section>
+</section>
+
+
 
 
 
