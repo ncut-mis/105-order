@@ -124,8 +124,8 @@
                       <div class="mu-restaurant-menu-area">
 
                           <div class="mu-title">
-                              <span class="mu-subtitle">菜單</span>
-                              <h2>OUR MENU</h2>
+                              <span class="mu-subtitle">點餐明細</span>
+                              <h2>ITEM</h2>
                               <form method="POST" action="/order/{{$order->id}}/confirm">
                                   {{ csrf_field() }}
                                   {{ method_field('PATCH') }}
@@ -309,7 +309,7 @@
 
 
 
-                <div class="tab-pane fade in active" id="meals">
+                <div class="tab-pane fade" id="meals">
                   <div class="mu-tab-content-area">
                     <div class="row">
 
@@ -369,7 +369,7 @@
                 </div>
 
 
-                <div class="tab-pane fade in active" id="appetizers">
+                <div class="tab-pane fade" id="appetizers">
                   <div class="mu-tab-content-area">
                     <div class="row">
 
@@ -430,7 +430,7 @@
 
 
 
-                <div class="tab-pane fade in active" id="salads">
+                <div class="tab-pane fade" id="salads">
                   <div class="mu-tab-content-area">
                     <div class="row">
 
@@ -465,7 +465,6 @@
                                         </button>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
 
-
                                       </div>
 
                                     </div>
@@ -479,10 +478,8 @@
 
 
                           </ul>
-
                         </div>
-                      </div>
-
+                        </div>
 
 
                     </div>
@@ -496,7 +493,7 @@
 
 
 
-                <div class="tab-pane fade in active" id="Appetizer">
+                <div class="tab-pane fade" id="Appetizer">
                   <div class="mu-tab-content-area">
                     <div class="row">
 
@@ -562,204 +559,27 @@
 
 
 
-                <div class="tab-pane fade" id="drink">
-                  <div class="mu-tab-content-area">
-                    <div class="row">
 
-                      <div class="col-md-6">
-                        <div class="mu-tab-content-left">
-                          <ul class="mu-menu-item-nav">
-                            <li>
-                              <div class="media">
-                                <div class="media-left">
-                                  <a href="#">
-                                    <img class="media-object" src="img/menu/item-9.jpg" alt="img">
-                                  </a>
-                                </div>
-                                <div class="media-body">
-                                  <h4 class="media-heading"><a href="#">English Breakfast</a></h4>
-                                  <span class="mu-menu-price">$15.85</span>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-                                </div>
-                              </div>
-                            </li>
-                             <li>
-                              <div class="media">
-                                <div class="media-left">
-                                  <a href="#">
-                                    <img class="media-object" src="img/menu/item-10.jpg" alt="img">
-                                  </a>
-                                </div>
-                                <div class="media-body">
-                                  <h4 class="media-heading"><a href="#">Chines Breakfast</a></h4>
-                                  <span class="mu-menu-price">$11.95</span>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-                                </div>
-                              </div>
-                            </li>
-                             <li>
-                              <div class="media">
-                                <div class="media-left">
-                                  <a href="#">
-                                    <img class="media-object" src="img/menu/item-9.jpg" alt="img">
-                                  </a>
-                                </div>
-                                <div class="media-body">
-                                  <h4 class="media-heading"><a href="#">Indian Breakfast</a></h4>
-                                  <span class="mu-menu-price">$15.85</span>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-                                </div>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                     </div>
 
-                   </div>
+
+
                  </div>
-                </div>
-
-              </div>
 
 
-
-            </div>
-          </div>
+           </div>
         </div>
+
+        </div>
+
       </div>
 
 
   </section>
 
-  <!-- End Restaurant Menu -->
-
-  <!-- Start Reservation section -->
-
-
-
-
-  <!-- End Reservation section -->
-
-  <!-- Start Gallery -->
-
-              <!-- Start gallery image -->
-
-                <!-- start single gallery image -->
-
-                <!-- End single gallery image -->
-
-                <!-- start single gallery image -->
-
-                <!-- End single gallery image -->
-
-  <div id="test"></div>
-
-  <button type="button" onclick="alertFunc();">AJAX明細</button>
-  <br>
-                <!-- start single gallery image -->
-  <script type="text/javascript">
-    function alertFunc(){
-      var xhr =new XMLHttpRequest();
-      xhr.open("get","/order/{{$order->id}}/item/test",true);
-      xhr.onload=function(){
-        var test=document.getElementById("test");
-         var ourData =JSON.parse(this.response);
-
-
-
-        console.log(ourData);
-        for(var i=0, a=1;i<ourData[0].item.length;i++ ,a++){
-          var str="";
-          str ="第"+a+"筆點餐明細 id="+ ourData[0].item[i].id +" 名稱="+ ourData[0].item[i].name +" 價格="+ ourData[0].item[i].price  ;
-
-          alert(str);
-
-            location.href="menu.blade.php?str="+str;
-        }
-
-
-
-
-
-
-      };
-
-
-      xhr.send();
-    }
-
-
-    <!-- 重複執行Ajax
-
-    var myVar;
-    function myFunction() {
-      myVar = setInterval(alertFunc,30000);
-    }
-
-
-
-    -->
-  </script>
-  <!--
-
-  echo $_GET['str'];
-
-
-          -->
-
-
-
-
-      <!-- End single gallery image -->
-
-                <!-- start single gallery image -->
-
-                <!-- End single gallery image -->
-
-                <!-- start single gallery image -->
-
-                <!-- End single gallery image -->
-
-                <!-- start single gallery image -->
-
-                <!-- End single gallery image -->
-
-                <!-- start single gallery image -->
-
-                <!-- End single gallery image -->
-
-                <!-- start single gallery image -->
-
-                <!-- End single gallery image -->
-
-                <!-- start single gallery image -->
-
-                <!-- End single gallery image -->
-
-
-  <!-- End Gallery -->
-
-  <!-- Start Client Testimonial section -->
-
-
-              <!-- testimonial content -->
-
-                <!-- testimonial slider -->
-
-  <!-- End Client Testimonial section -->
-
-
 
 
   @endforeach
-  <!-- Start Contact section -->
 
-  <!-- End Contact section -->
-
-  <!-- Start Map section -->
-
-  <!-- End Map section -->
 
   <!-- Start Footer -->
   <footer id="mu-footer">
