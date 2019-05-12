@@ -48,3 +48,8 @@ Route::get('/order/{order}/checkout',['as' => 'order.checkout' , 'uses' => 'Orde
 
 /*使用優惠卷*/
 Route::post('/order/{order}/coupons/{id}',['as' => 'member.coupon' , 'uses' => 'MemberCouponController@create']);
+
+
+
+Route::get('/ajax',['as' => 'ajax' , 'uses' => 'MenuController@ajax']);
+Route::get('/ajaxdata',['as' => 'ajaxdata' , 'uses' => 'MenuController@ajaxdata']);

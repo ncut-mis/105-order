@@ -26,4 +26,37 @@ class MenuController extends Controller
 
 
     }
+
+    public function ajax()
+    {
+        $restaurant= auth()->user()->restaurant;
+
+        $order = Order::where('customer_id',Auth::user()->id)->first();
+        $items=$order->items;
+
+        $order=Auth::user()->order;
+
+
+
+        $meal = $restaurant->meals;
+
+        $data=['meals'=>$meal]+['restaurant'=>$restaurant]+['orders'=>$order]+['item' => $items];
+        return view('ajax',$data);
+    }
+    public function ajaxdata()
+    {
+        $restaurant= auth()->user()->restaurant;
+
+        $order = Order::where('customer_id',Auth::user()->id)->first();
+        $items=$order->items;
+
+        $order=Auth::user()->order;
+
+
+
+        $meal = $restaurant->meals;
+
+        $data=['meals'=>$meal]+['restaurant'=>$restaurant]+['orders'=>$order]+['item' => $items];
+        return view('ajaxdata',$data);
+    }
 }

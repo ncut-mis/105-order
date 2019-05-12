@@ -58,11 +58,12 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js') }}"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
+
     <![endif]-->
 
   </head>
   <body>
-
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <!--START SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#">
       <i class="fa fa-angle-up"></i>
@@ -150,40 +151,21 @@
                                                   <div class="mu-tab-content-left">
 
                                                       <ul class="mu-menu-item-nav">
-                                                          @foreach($item as $de)
-                                                              <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
-                                                                  {{ csrf_field() }}
-                                                                  {{ method_field('DELETE') }}
+                                                          <div id="auto"></div>
+                                                          <script>
+                                                              $(document).ready( function(){
+                                                                  $('#auto').load('ajaxdata');
+                                                                  refresh();
+                                                              });
 
-
-
-                                                                  <li>
-                                                                      <div class="media">
-                                                                          <div class="media-left">
-                                                                              <a href="#">
-                                                                                  <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
-                                                                              </a>
-                                                                          </div>
-                                                                          <div class="media-body">
-                                                                              <h4 class="media-heading"><a href="#">{{$de->meal->name}}</a></h4>
-                                                                              <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
-                                                                              <br>
-                                                                              <button type="submit" class="btn btn-success">
-                                                                                  <i class="fa fa-minus"></i>我不要了
-                                                                              </button>
-                                                                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
-
-                                                                          </div>
-
-                                                                      </div>
-
-                                                                  </li>
-
-                                                              </form>
-                                                          @endforeach
-
-
+                                                              function refresh()
+                                                              {
+                                                                  setTimeout( function() {
+                                                                      $('#auto').load('ajaxdata');
+                                                                      refresh();
+                                                                  }, 2000);
+                                                              }
+                                                          </script>
                                                       </ul>
 
                                                   </div>
