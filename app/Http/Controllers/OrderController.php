@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Restaurant;
 use Auth;
 use \Carbon\Carbon ;
 use Illuminate\Http\Request;
@@ -8,16 +9,20 @@ use App\Order;
 use App\Dining_Table;
 use App\Table;
 use App\Coupon;
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
 
 class OrderController extends Controller
 {
 
 
-    public function confirm(Order $order)
+    public function confirm(Order $order,Item $item)
     { $restaurant= auth()->user()->restaurant;
 
         $items=$order->items;
-        $data = ['item' => $items,]+['restaurant'=>$restaurant];
+        $abc = ['item' => $items,]+['restaurant'=>$restaurant];
 
         $dining_table = Dining_Table::where('order_id',$order['id'])->first();
         $table = Table::find($dining_table['table_id']);
@@ -32,8 +37,31 @@ class OrderController extends Controller
             $coupon=Coupon::where('restaurant_id',$order->restaurant_id)->where('StartTime','<',$now)->where('EndTime','>',$now)->get();
             $coupon= ['coupon' => $coupon,];
         }
+        /*FCM*/
+        $counter = Restaurant::where('id',Auth::user()->restaurant_id)
+            ->value('token');
+        $token = $counter;
 
-            return view('confirm',$data, $coupon);
+        $optionBuilder = new OptionsBuilder();
+        $optionBuilder->setTimeToLive(60*20);
+        $notificationBuilder = new PayloadNotificationBuilder('有顧客向您發送訂單囉');
+        $notificationBuilder->setBody('快讀我~我餓了!!!')
+            ->setSound('default');
+        $dataBuilder = new PayloadDataBuilder();
+        $dataBuilder->addData(['a_data' => 'my_data']);
+        $option = $optionBuilder->build();
+        $notification = $notificationBuilder->build();
+        $data = $dataBuilder->build();
+        sleep(0.5);
+        $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+        $downstreamResponse->numberSuccess();
+        $downstreamResponse->numberFailure();
+        $downstreamResponse->numberModification();
+        $downstreamResponse->tokensToDelete();
+        $downstreamResponse->tokensToModify();
+        $downstreamResponse->tokensToRetry();
+
+            return view('confirm',$abc, $coupon);
     }
     public function checkout($id)
     {
