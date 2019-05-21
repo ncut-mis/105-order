@@ -247,6 +247,9 @@
                 <li><a href="#appetizers" data-toggle="tab">開胃品</a></li>
                 <li><a href="#salads" data-toggle="tab">沙拉</a></li>
                 <li><a href="#Appetizer" data-toggle="tab">前菜</a></li>
+                  <li><a href="#soup" data-toggle="tab">湯品</a></li>
+                  <li><a href="#dessert" data-toggle="tab">甜點</a></li>
+                  <li><a href="#drink" data-toggle="tab">飲料</a></li>
               </ul>
 
               <!-- Tab panes -->
@@ -556,11 +559,193 @@
 
 
 
+                  <div class="tab-pane fade" id="soup">
+                      <div class="mu-tab-content-area">
+                          <div class="row">
+
+                              <div class="col-md-12">
+
+                                  <div class="mu-tab-content-left">
+
+                                      <ul class="mu-menu-item-nav">
+                                          @foreach($meals as $meal)
+
+                                              @if($meal->category_id == 5 )
+
+
+
+                                                  <form method="POST" action="/order/{{$order->id}}/item">
+                                                      {{ csrf_field() }}
+
+
+                                                      <li>
+                                                          <div class="media">
+                                                              <div class="media-left">
+                                                                  <a href="#">
+                                                                      <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
+                                                                  </a>
+                                                              </div>
+                                                              <div class="media-body">
+                                                                  <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
+                                                                  <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                  <br>
+                                                                  <button type="submit" class="btn btn-success">
+                                                                      <i class="fa fa-plus"></i>我要這個
+                                                                  </button>
+                                                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
+
+                                                              </div>
+
+                                                          </div>
+
+                                                      </li>
+                                                      <input type="hidden" name="quantity" value=1>
+                                                      <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                                  </form>
+                                              @endif
+                                          @endforeach
+
+
+                                      </ul>
+                                  </div>
+                              </div>
+
+
+                          </div>
+                      </div>
+                  </div>
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+                  <div class="tab-pane fade" id="dessert">
+                      <div class="mu-tab-content-area">
+                          <div class="row">
+
+                              <div class="col-md-12">
+
+                                  <div class="mu-tab-content-left">
+
+                                      <ul class="mu-menu-item-nav">
+                                          @foreach($meals as $meal)
+
+                                              @if($meal->category_id == 6 )
+
+
+
+                                                  <form method="POST" action="/order/{{$order->id}}/item">
+                                                      {{ csrf_field() }}
+
+
+                                                      <li>
+                                                          <div class="media">
+                                                              <div class="media-left">
+                                                                  <a href="#">
+                                                                      <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
+                                                                  </a>
+                                                              </div>
+                                                              <div class="media-body">
+                                                                  <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
+                                                                  <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                  <br>
+                                                                  <button type="submit" class="btn btn-success">
+                                                                      <i class="fa fa-plus"></i>我要這個
+                                                                  </button>
+                                                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
+
+                                                              </div>
+
+                                                          </div>
+
+                                                      </li>
+                                                      <input type="hidden" name="quantity" value=1>
+                                                      <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                                  </form>
+                                              @endif
+                                          @endforeach
+
+
+                                      </ul>
+                                  </div>
+                              </div>
+
+
+                          </div>
+                      </div>
+                  </div>
+
+
+
+
+
+
+                  <div class="tab-pane fade" id="drink">
+                      <div class="mu-tab-content-area">
+                          <div class="row">
+
+                              <div class="col-md-12">
+
+                                  <div class="mu-tab-content-left">
+
+                                      <ul class="mu-menu-item-nav">
+                                          @foreach($meals as $meal)
+
+                                              @if($meal->category_id == 7 )
+
+
+
+                                                  <form method="POST" action="/order/{{$order->id}}/item">
+                                                      {{ csrf_field() }}
+
+
+                                                      <li>
+                                                          <div class="media">
+                                                              <div class="media-left">
+                                                                  <a href="#">
+                                                                      <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
+                                                                  </a>
+                                                              </div>
+                                                              <div class="media-body">
+                                                                  <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
+                                                                  <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                  <br>
+                                                                  <button type="submit" class="btn btn-success">
+                                                                      <i class="fa fa-plus"></i>我要這個
+                                                                  </button>
+                                                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
+
+                                                              </div>
+
+                                                          </div>
+
+                                                      </li>
+                                                      <input type="hidden" name="quantity" value=1>
+                                                      <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                                  </form>
+                                              @endif
+                                          @endforeach
+
+
+                                      </ul>
+                                  </div>
+                              </div>
+
+
+                          </div>
+                      </div>
+                  </div>
 
 
                  </div>

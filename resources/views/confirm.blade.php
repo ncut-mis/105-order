@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    .button {
-        background-color: #3570af; /* Green */
-        border-radius: 8px;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 8px;
-        margin: 4px 2px;
-        cursor: pointer;
-    }
-    .button1 {background-color: #f44336;} /* Red */
 
-</style>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -51,22 +51,5 @@ class OrderItemController extends Controller
         Item::destroy($item);
         return redirect()->route('menu.index');
     }
-    public function confirm1($id)
-    {
-        $items = Item::where('order_id',$id)->get();
-        foreach ($items as $item){
-            $item->status=3;
-            $item->save();
-        }
-        return redirect()->route('menu.index');
-    }
 
-    public function confirm($id)
-    {
-        $dining_table = Dining_Table::where('order_id',$id)->first();
-        $table = Table::find($dining_table['table_id']);
-        $table->status="等餐中";
-        $table->save();
-        return redirect()->route('menu.index');
-    }
 }

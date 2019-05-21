@@ -26,7 +26,7 @@ class OrderController extends Controller
 
         $dining_table = Dining_Table::where('order_id',$order['id'])->first();
         $table = Table::find($dining_table['table_id']);
-        $table->status="等餐中";
+        $table->status="確認中";
         $table->save();
 
         $coupon=array();
@@ -69,14 +69,19 @@ class OrderController extends Controller
         $table = Table::find($dining_table['table_id']);
 
 
-        if ($table['status'] == "等餐中")
+        if ($table['status'] == "確認中")
         {
+
+            return view('order_status.status0');
+
+        }elseif($table['status'] == "等餐中" ){
             return view('order_status.status1');
         } elseif($table['status'] == "用餐中" ){
             return view('order_status.status2');
         }elseif($table['status'] == "已結帳" ){
             return view('order_status.status3');
         }
+
 
 
 

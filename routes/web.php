@@ -37,7 +37,7 @@ Route::get('/order/{order}/item',['as' => 'order.item.index' , 'uses' => 'OrderI
 Route::delete('/order/{id}/item/{item}',['as' => 'order.item.destroy' , 'uses' => 'OrderItemController@destroy']);
 
 /*顧客確認點餐*/
-Route::patch('/order/{order}/confirm',['as' => 'order.confirm' , 'uses' => 'OrderController@confirm']);
+Route::patch('/order/{order}/confirm',['as' => 'order.confirm' , 'uses' => 'OrderItemController@confirm']);
 
 
 /*查詢點餐明細Ajax*/
@@ -53,3 +53,4 @@ Route::post('/order/{order}/coupons/{id}',['as' => 'member.coupon' , 'uses' => '
 
 Route::get('/ajax',['as' => 'ajax' , 'uses' => 'MenuController@ajax']);
 Route::get('/ajaxdata',['as' => 'ajaxdata' , 'uses' => 'MenuController@ajaxdata']);
+
