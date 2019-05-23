@@ -25,10 +25,18 @@ class OrderItemController extends Controller
         ]);
         return redirect()->route('menu.index');
     }
-    public function index(Order $order)
+    public function index()
     {
+
+        $restaurant= auth()->user()->restaurant;
+        $order = Order::where('customer_id',Auth::user()->id)->first();
         $items=$order->items;
-        $data = ['item' => $items,];
+
+
+        $order=Auth::user()->order;
+
+
+        $data = ['item' => $items,]+['restaurant'=>$restaurant]+['orders'=>$order];
         return view('item',$data);
 
     }
@@ -51,5 +59,6 @@ class OrderItemController extends Controller
         Item::destroy($item);
         return redirect()->route('menu.index');
     }
+
 
 }

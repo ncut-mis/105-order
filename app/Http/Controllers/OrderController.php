@@ -76,10 +76,8 @@ class OrderController extends Controller
 
         }elseif($table['status'] == "等餐中" ){
             return view('order_status.status1');
-        } elseif($table['status'] == "用餐中" ){
+        } elseif($table['status'] == "空閒中" ){
             return view('order_status.status2');
-        }elseif($table['status'] == "已結帳" ){
-            return view('order_status.status3');
         }
 
 

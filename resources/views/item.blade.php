@@ -1,94 +1,167 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>點餐明細</title>
+@extends('layouts.index')
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+@section('content')
+<!-- Start header section -->
+<header id="mu-header">
+    <nav class="navbar navbar-default mu-main-navbar" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-    <!-- Styles -->
-    <style>
+                <!-- LOGO -->
 
-    </style>
-</head>
+                <!--  Text based logo  -->
+                <a class="navbar-brand" href="#top">{{$restaurant->name}}<span>X</span></a>
+
+                <!--  Image based logo  -->
+                <!-- <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="Logo img"></a>  -->
 
 
-<body>
-@php
-    $total=0;
-
-@endphp
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-                <thead>
-                <tr>
-
-                    <th width="200" style="text-align: center">圖</th>
-                    <th width="200" style="text-align: center">餐點名稱</th>
-                    <th width="200" style="text-align: center">數量</th>
-                    <th width="150" style="text-align: center">價格</th>
-                    <th width="100" style="text-align: center">操作</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                @foreach($item as $de)
-                    <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-
-                        <tr>
-
-                            <td style="text-align: center"><img src="{{url('img/meal/'.$de->meal->photo)}}"width="80" height="40"></td>
-                            <td style="text-align: center">{{$de->meal->name}}</td>
-                            <td style="text-align: center">{{$de->quantity}}</td>
-                            <td style="text-align: center">{{$de->meal->price*$de->quantity}}</td>
-                            <td style="text-align: center">
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-plus"></i>我不要了
-                                </button>
-
-                            </td>
-
-                            @php
-                                $total=$total+$de->meal->price;
-
-                            @endphp
-
-                        </tr>
-
-                    </form>
-
-                @endforeach
-
-                        <form method="POST" action="/order/{{$de->order_id}}/confirm">
-                            {{ csrf_field() }}
-                            {{ method_field('PATCH') }}
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-plus"></i>送出點單
-                        </button>
-                    </form>
-                        　<input type="button" value="繼續點餐" onclick="location.href='/menu'">
-                </tbody>
-
-            </table >
-            <div style="text-align:center;">
-                總價{{$total}}
             </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
+                    <li><a href="#top"> TOP </a></li>
+
+                    <li><a href="/menu"> MENU </a></li>
+
+
+
+
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-    </div>
-</div>
+    </nav>
+</header>
+<a name="top" id="top"></a>
+@foreach($orders as $order)
 
 
 
 
-</body>
+
+    @if (count($item) > 0)
+
+        <section id="mu-restaurant-menu">
+            <a name="item" id="item"></a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mu-restaurant-menu-area">
+
+                            <div class="mu-title">
+                                <span class="mu-subtitle">點餐明細</span>
+                                <h2>ITEM</h2>
+                                <form method="POST" action="/order/{{$order->id}}/confirm">
+                                    {{ csrf_field() }}
+                                    {{ method_field('PATCH') }}
+
+                                    <button type="submit" class="btn btn-success">
+                                        <i ></i>送出餐點
+                                    </button>
+
+                                </form>
+                                <br>
+                            </div>
+
+                            <div class="mu-restaurant-menu-content">
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" >
+                                        <div class="mu-tab-content-area">
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+
+                                                    <div class="mu-tab-content-left">
+
+                                                        <ul class="mu-menu-item-nav">
+                                                            <div id="auto"></div>
+                                                            <script>
+                                                                $(document).ready( function(){
+                                                                    $('#auto').load('ajaxdata');
+                                                                    refresh();
+                                                                });
+
+                                                                function refresh()
+                                                                {
+                                                                    setTimeout( function() {
+                                                                        $('#auto').load('ajaxdata');
+                                                                        refresh();
+                                                                    }, 2000);
+                                                                }
+                                                            </script>
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
 
 
-</html>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    @endif
+
+
+
+
+
+
+
+
+
+    <!-- End Chef Section -->
+    <!-- End header section -->
+
+
+    <!-- Start slider  -->
+
+    <!-- End slider  -->
+
+    <!-- Start About us -->
+
+    <!-- End About us -->
+
+    <!-- Start Counter Section -->
+
+    <!-- End Counter Section -->
+
+    <!-- Start Restaurant Menu -->
+
+
+
+@endforeach
+
+@endsection

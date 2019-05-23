@@ -31,13 +31,13 @@ Route::get('/menu',['as' => 'menu.index' , 'uses' => 'MenuController@index']);
 Route::post('/order/{id}/item',['as' => 'order.item.store' , 'uses' => 'OrderItemController@store']);
 
 /*查詢點餐明細*/
-Route::get('/order/{order}/item',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index']);
+Route::get('/item',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index']);
 
 /*取消已點選餐點*/
 Route::delete('/order/{id}/item/{item}',['as' => 'order.item.destroy' , 'uses' => 'OrderItemController@destroy']);
 
 /*顧客確認點餐*/
-Route::patch('/order/{order}/confirm',['as' => 'order.confirm' , 'uses' => 'OrderItemController@confirm']);
+Route::patch('/order/{order}/confirm',['as' => 'order.confirm' , 'uses' => 'OrderController@confirm']);
 
 
 /*查詢點餐明細Ajax*/
