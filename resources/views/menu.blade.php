@@ -169,254 +169,272 @@
 
                         <div class="mu-title">
                             <span class="mu-subtitle">菜單</span>
-                            <h2>OUR MENU</h2>
+                            <h2><font face="Comic Sans MS">OUR MENU</font></h2>
                         </div>
 
                         <div class="mu-restaurant-menu-content">
                             <ul class="nav nav-tabs mu-restaurant-menu">
-                                <li class="active"><a href="#all" data-toggle="tab">All</a></li>
-                                <li><a href="#meals" data-toggle="tab">主餐</a></li>
-                                <li><a href="#appetizers" data-toggle="tab">開胃品</a></li>
-                                <li><a href="#salads" data-toggle="tab">沙拉</a></li>
-                                <li><a href="#Appetizer" data-toggle="tab">前菜</a></li>
-                                <li><a href="#soup" data-toggle="tab">湯品</a></li>
-                                <li><a href="#dessert" data-toggle="tab">甜點</a></li>
-                                <li><a href="#drink" data-toggle="tab">飲料</a></li>
+
+                                <li class="active"><a href="#main" data-toggle="tab"><font face="微軟正黑體">主餐</font></a></li>
+                                <li><a href="#appetizer-1" data-toggle="tab"><font face="微軟正黑體">開胃品</font></a></li>
+                                <li><a href="#salad" data-toggle="tab"><font face="微軟正黑體">沙拉</font></a></li>
+                                <li><a href="#appetizer-2" data-toggle="tab"><font face="微軟正黑體">前菜</font></a></li>
+                                <li><a href="#soup" data-toggle="tab"><font face="微軟正黑體">湯品</font></a></li>
+                                <li><a href="#dessert" data-toggle="tab"><font face="微軟正黑體">甜點</font></a></li>
+                                <li><a href="#drink" data-toggle="tab"><font face="微軟正黑體">飲料</font></a></li>
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade in active" id="all">
+
+
+                                <div class="tab-pane fade in active" id="main">
                                     <div class="mu-tab-content-area">
                                         <div class="row">
-
-                                            <div class="col-md-12">
-
-                                                <div class="mu-tab-content-left">
-
-                                                    <ul class="mu-menu-item-nav">
-                                                        @foreach($meals as $meal)
-                                                            <form method="POST" action="/order/{{$order->id}}/item">
-                                                                {{ csrf_field() }}
-
-
-                                                                <li>
-                                                                    <div class="media">
-                                                                        <div class="media-left">
-                                                                            <a href="#">
-                                                                                <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="media-body">
-                                                                            <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
-                                                                            <span class="mu-menu-price">${{$meal->price}}</span>
-                                                                            <br>
-                                                                            <button type="submit" class="btn btn-success">
-                                                                                <i class="fa fa-plus"></i>我要這個
-                                                                            </button>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
-
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                </li>
-
-
-                                                                <input type="hidden" name="quantity" value=1>
-                                                                <input type="hidden" name="meal_id" value=" {{$meal->id}}">
-                                                            </form>
-                                                        @endforeach
-
-
-                                                    </ul>
-
-                                                </div>
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="tab-pane fade" id="meals">
-                                    <div class="mu-tab-content-area">
-                                        <div class="row">
-
-                                            <div class="col-md-12">
-
-                                                <div class="mu-tab-content-left">
-
-                                                    <ul class="mu-menu-item-nav">
-                                                        @foreach($meals as $meal)
-
-                                                            @if("$meal->category_id" == 1)
-
-
-
-                                                                <form method="POST" action="/order/{{$order->id}}/item">
-                                                                    {{ csrf_field() }}
-
-
+                                            @foreach($meals as $meal)
+                                                @if($meal->category_id==1)
+                                                    @if(($meal->id)%2==1)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                        <div class="col-md-6">
+                                                            <div class="mu-tab-content-left">
+                                                                <ul class="mu-menu-item-nav">
                                                                     <li>
                                                                         <div class="media">
                                                                             <div class="media-left">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
-                                                                                </a>
+                                                                                <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
                                                                             </div>
                                                                             <div class="media-body">
-                                                                                <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
-                                                                                <span class="mu-menu-price">${{$meal->price}}</span>
-                                                                                <br>
-                                                                                <button type="submit" class="btn btn-success">
-                                                                                    <i class="fa fa-plus"></i>我要這個
-                                                                                </button>
-                                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
+                                                                              <div class="col-md-7">
+                                                                                  <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                  <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                              </div>
+                                                                              <div class="col-md-5">
+                                                                                  <button type="submit" class="btn btn-success">
+                                                                                      <i class="fa fa-plus"></i>我要這個
+                                                                                  </button><br><br>
+                                                                               </div>
 
-
+                                                                                <div>
+                                                                                    <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                </div>
+                                                                                {{--                                                                            <p></p>--}}
                                                                             </div>
-
                                                                         </div>
-
+                                                                        <hr class="style-one" />
                                                                     </li>
-                                                                    <input type="hidden" name="quantity" value=1>
-                                                                    <input type="hidden" name="meal_id" value=" {{$meal->id}}">
-                                                                </form>
-                                                            @endif
-                                                        @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        </form>
+                                                    @endif
+                                                    @if(($meal->id)%2==0)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                                    {{ csrf_field() }}
+                                                           <div class="col-md-6">
+                                                               <div class="mu-tab-content-right">
+                                                                   <ul class="mu-menu-item-nav">
+                                                                       <li>
+                                                                           <div class="media">
+                                                                               <div class="media-left">
+                                                                                   <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                               </div>
+                                                                               <div class="media-body">
+                                                                                   <div class="col-md-7">
+                                                                                       <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                       <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                   </div>
+                                                                                   <div class="col-md-5">
+                                                                                       <button type="submit" class="btn btn-success">
+                                                                                           <i class="fa fa-plus"></i>我要這個
+                                                                                       </button><br><br>
+                                                                                   </div>
 
 
-                                                    </ul>
+                                                                                   <div>
 
-                                                </div>
-                                            </div>
-
-
-
+                                                                                       <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                   </div>
+                                                                                   {{--                                                                            <p></p>--}}
+                                                                               </div>
+                                                                           </div>
+                                                                           <hr class="style-one" />
+                                                                       </li>
+                                                                   </ul>
+                                                               </div>
+                                                           </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                                         </form>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
 
 
-                                <div class="tab-pane fade" id="appetizers">
+                                <div class="tab-pane fade" id="appetizer-1">
                                     <div class="mu-tab-content-area">
                                         <div class="row">
-
-                                            <div class="col-md-12">
-
-                                                <div class="mu-tab-content-left">
-
-                                                    <ul class="mu-menu-item-nav">
-                                                        @foreach($meals as $meal)
-
-                                                            @if($meal->category_id == 2 )
-
-
-
-                                                                <form method="POST" action="/order/{{$order->id}}/item">
-                                                                    {{ csrf_field() }}
-
-
-                                                                    <li>
-                                                                        <div class="media">
-                                                                            <div class="media-left">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
-                                                                                </a>
+                                            @foreach($meals as $meal)
+                                                @if($meal->category_id==2)
+                                                    @if(($meal->id)%2==1)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-left">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="media-body">
-                                                                                <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
-                                                                                <span class="mu-menu-price">${{$meal->price}}</span>
-                                                                                <br>
-                                                                                <button type="submit" class="btn btn-success">
-                                                                                    <i class="fa fa-plus"></i>我要這個
-                                                                                </button>
-                                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @endif
+                                                    @if(($meal->id)%2==0)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-right">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <input type="hidden" name="quantity" value=1>
-                                                                    <input type="hidden" name="meal_id" value=" {{$meal->id}}">
-                                                                </form>
-                                                            @endif
-                                                        @endforeach
-
-
-                                                    </ul>
-
-                                                </div>
-                                            </div>
-
-
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                                        </form>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
 
 
 
-                                <div class="tab-pane fade" id="salads">
+
+                                <div class="tab-pane fade" id="salad">
                                     <div class="mu-tab-content-area">
                                         <div class="row">
-
-                                            <div class="col-md-12">
-
-                                                <div class="mu-tab-content-left">
-
-                                                    <ul class="mu-menu-item-nav">
-                                                        @foreach($meals as $meal)
-
-                                                            @if($meal->category_id == 3 )
-
-
-
-                                                                <form method="POST" action="/order/{{$order->id}}/item">
-                                                                    {{ csrf_field() }}
-
-
-                                                                    <li>
-                                                                        <div class="media">
-                                                                            <div class="media-left">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
-                                                                                </a>
+                                            @foreach($meals as $meal)
+                                                @if($meal->category_id==3)
+                                                    @if(($meal->id)%2==1)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-left">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="media-body">
-                                                                                <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
-                                                                                <span class="mu-menu-price">${{$meal->price}}</span>
-                                                                                <br>
-                                                                                <button type="submit" class="btn btn-success">
-                                                                                    <i class="fa fa-plus"></i>我要這個
-                                                                                </button>
-                                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @endif
+                                                    @if(($meal->id)%2==0)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-right">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <input type="hidden" name="quantity" value=1>
-                                                                    <input type="hidden" name="meal_id" value=" {{$meal->id}}">
-                                                                </form>
-                                                            @endif
-                                                        @endforeach
-
-
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                                        </form>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -425,67 +443,87 @@
 
 
 
-
-
-
-                                <div class="tab-pane fade" id="Appetizer">
+                                <div class="tab-pane fade" id="appetizer-2">
                                     <div class="mu-tab-content-area">
                                         <div class="row">
-
-                                            <div class="col-md-12">
-
-                                                <div class="mu-tab-content-left">
-
-                                                    <ul class="mu-menu-item-nav">
-                                                        @foreach($meals as $meal)
-
-                                                            @if($meal->category_id == 4 )
-
-
-
-                                                                <form method="POST" action="/order/{{$order->id}}/item">
-                                                                    {{ csrf_field() }}
-
-
-                                                                    <li>
-                                                                        <div class="media">
-                                                                            <div class="media-left">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
-                                                                                </a>
+                                            @foreach($meals as $meal)
+                                                @if($meal->category_id==4)
+                                                    @if(($meal->id)%2==1)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-left">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="media-body">
-                                                                                <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
-                                                                                <span class="mu-menu-price">${{$meal->price}}</span>
-                                                                                <br>
-                                                                                <button type="submit" class="btn btn-success">
-                                                                                    <i class="fa fa-plus"></i>我要這個
-                                                                                </button>
-                                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @endif
+                                                    @if(($meal->id)%2==0)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-right">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <input type="hidden" name="quantity" value=1>
-                                                                    <input type="hidden" name="meal_id" value=" {{$meal->id}}">
-                                                                </form>
-                                                            @endif
-                                                        @endforeach
-
-
-                                                    </ul>
-
-                                                </div>
-                                            </div>
-
-
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                                        </form>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
+
 
 
 
@@ -494,67 +532,83 @@
                                 <div class="tab-pane fade" id="soup">
                                     <div class="mu-tab-content-area">
                                         <div class="row">
-
-                                            <div class="col-md-12">
-
-                                                <div class="mu-tab-content-left">
-
-                                                    <ul class="mu-menu-item-nav">
-                                                        @foreach($meals as $meal)
-
-                                                            @if($meal->category_id == 5 )
-
-
-
-                                                                <form method="POST" action="/order/{{$order->id}}/item">
-                                                                    {{ csrf_field() }}
-
-
-                                                                    <li>
-                                                                        <div class="media">
-                                                                            <div class="media-left">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
-                                                                                </a>
+                                            @foreach($meals as $meal)
+                                                @if($meal->category_id==5)
+                                                    @if(($meal->id)%2==1)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-left">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="media-body">
-                                                                                <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
-                                                                                <span class="mu-menu-price">${{$meal->price}}</span>
-                                                                                <br>
-                                                                                <button type="submit" class="btn btn-success">
-                                                                                    <i class="fa fa-plus"></i>我要這個
-                                                                                </button>
-                                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @endif
+                                                    @if(($meal->id)%2==0)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-right">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <input type="hidden" name="quantity" value=1>
-                                                                    <input type="hidden" name="meal_id" value=" {{$meal->id}}">
-                                                                </form>
-                                                            @endif
-                                                        @endforeach
-
-
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                                        </form>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -565,58 +619,84 @@
                                 <div class="tab-pane fade" id="dessert">
                                     <div class="mu-tab-content-area">
                                         <div class="row">
-
-                                            <div class="col-md-12">
-
-                                                <div class="mu-tab-content-left">
-
-                                                    <ul class="mu-menu-item-nav">
-                                                        @foreach($meals as $meal)
-
-                                                            @if($meal->category_id == 6 )
-
-
-
-                                                                <form method="POST" action="/order/{{$order->id}}/item">
-                                                                    {{ csrf_field() }}
-
-
-                                                                    <li>
-                                                                        <div class="media">
-                                                                            <div class="media-left">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
-                                                                                </a>
+                                            @foreach($meals as $meal)
+                                                @if($meal->category_id==6)
+                                                    @if(($meal->id)%2==1)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-left">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="media-body">
-                                                                                <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
-                                                                                <span class="mu-menu-price">${{$meal->price}}</span>
-                                                                                <br>
-                                                                                <button type="submit" class="btn btn-success">
-                                                                                    <i class="fa fa-plus"></i>我要這個
-                                                                                </button>
-                                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @endif
+                                                    @if(($meal->id)%2==0)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-right">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <input type="hidden" name="quantity" value=1>
-                                                                    <input type="hidden" name="meal_id" value=" {{$meal->id}}">
-                                                                </form>
-                                                            @endif
-                                                        @endforeach
-
-
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                                        </form>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
+
 
 
 
@@ -626,71 +706,101 @@
                                 <div class="tab-pane fade" id="drink">
                                     <div class="mu-tab-content-area">
                                         <div class="row">
-
-                                            <div class="col-md-12">
-
-                                                <div class="mu-tab-content-left">
-
-                                                    <ul class="mu-menu-item-nav">
-                                                        @foreach($meals as $meal)
-
-                                                            @if($meal->category_id == 7 )
-
-
-
-                                                                <form method="POST" action="/order/{{$order->id}}/item">
-                                                                    {{ csrf_field() }}
-
-
-                                                                    <li>
-                                                                        <div class="media">
-                                                                            <div class="media-left">
-                                                                                <a href="#">
-                                                                                    <img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img">
-                                                                                </a>
+                                            @foreach($meals as $meal)
+                                                @if($meal->category_id==7)
+                                                    @if(($meal->id)%2==1)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-left">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="media-body">
-                                                                                <h4 class="media-heading"><a href="#">{{$meal->name}}</a></h4>
-                                                                                <span class="mu-menu-price">${{$meal->price}}</span>
-                                                                                <br>
-                                                                                <button type="submit" class="btn btn-success">
-                                                                                    <i class="fa fa-plus"></i>我要這個
-                                                                                </button>
-                                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nulla aliquid praesentium dolorem commodi illo.</p>
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @endif
+                                                    @if(($meal->id)%2==0)
+                                                        <form method="POST" action="/order/{{$order->id}}/item">
+                                                            {{ csrf_field() }}
+                                                            <div class="col-md-6">
+                                                                <div class="mu-tab-content-right">
+                                                                    <ul class="mu-menu-item-nav">
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a><img class="media-object" src="{{url('img/meal/'. $meal->photo)}}" alt="img"></a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <div class="col-md-7">
+                                                                                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
+                                                                                        <span class="mu-menu-price">${{$meal->price}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <button type="submit" class="btn btn-success">
+                                                                                            <i class="fa fa-plus"></i>我要這個
+                                                                                        </button><br><br>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
+                                                                                    </div>
+                                                                                    {{--                                                                            <p></p>--}}
+                                                                                </div>
                                                                             </div>
-
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <input type="hidden" name="quantity" value=1>
-                                                                    <input type="hidden" name="meal_id" value=" {{$meal->id}}">
-                                                                </form>
-                                                            @endif
-                                                        @endforeach
-
-
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-
+                                                                            <hr class="style-one" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
+                                                        </form>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
 
 
+
+
+
+
+
+
+
+
+
+
                             </div>
-
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-
+        </div>
     </section>
 
 

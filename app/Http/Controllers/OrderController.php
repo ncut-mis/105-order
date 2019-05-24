@@ -37,7 +37,7 @@ class OrderController extends Controller
             $coupon=Coupon::where('restaurant_id',$order->restaurant_id)->where('StartTime','<',$now)->where('EndTime','>',$now)->get();
             $coupon= ['coupon' => $coupon,];
         }
-        /*FCM*/
+
         $counter = Restaurant::where('id',Auth::user()->restaurant_id)
             ->value('token');
         $token = $counter;

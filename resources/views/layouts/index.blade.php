@@ -2,19 +2,6 @@
 <html lang="en">
 <style>
 
-    html, body {
-
-        background-image: url('/img/background1.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        background-size: cover;
-        color: #636b6f;
-        font-family: 'Nunito', sans-serif;
-        font-weight: 200;
-        height: 100vh;
-        margin: 0;
-    }
 
 
 
