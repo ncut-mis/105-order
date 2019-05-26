@@ -32,6 +32,8 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 
+
+
     <!-- Google Fonts -->
 
     <!-- Prata for body  -->
@@ -102,6 +104,8 @@
 
 <!-- Custom js -->
 <script src="{{ asset('js/custom.js') }}"></script>
+
+
 
 </body>
 </html>

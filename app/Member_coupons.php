@@ -9,14 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Member_coupons extends Model
 {
 
+    protected $table='member_coupons';
     protected $fillable = [
-        'coupon_id',
-        'member_id',
-        'order_id',
-        'status',
-        'UseTime'
-
+        'coupon_id','order_id','member_id', 'UseTime', 'status'
     ];
+
     public function  member(){
         return $this->belongsTo( MemberEloquent::class);
     }
