@@ -223,9 +223,12 @@
                                                                         </div>
                                                                         <hr class="style-one" />
                                                                     </li>
+
                                                                 </ul>
                                                             </div>
                                                         </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
                                                         </form>
                                                     @endif
                                                     @if(($meal->id)%2==0)
@@ -311,6 +314,8 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
                                                         </form>
                                                     @endif
                                                     @if(($meal->id)%2==0)
@@ -395,6 +400,8 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
                                                         </form>
                                                     @endif
                                                     @if(($meal->id)%2==0)
@@ -480,6 +487,8 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
                                                         </form>
                                                     @endif
                                                     @if(($meal->id)%2==0)
@@ -566,6 +575,8 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
                                                         </form>
                                                     @endif
                                                     @if(($meal->id)%2==0)
@@ -653,6 +664,8 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
                                                         </form>
                                                     @endif
                                                     @if(($meal->id)%2==0)
@@ -740,6 +753,8 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="quantity" value=1>
+                                                            <input type="hidden" name="meal_id" value=" {{$meal->id}}">
                                                         </form>
                                                     @endif
                                                     @if(($meal->id)%2==0)

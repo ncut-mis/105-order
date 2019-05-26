@@ -123,26 +123,29 @@
 
 
 
-                                                            <li>
-                                                                <div class="media">
-                                                                    <div class="media-left">
-                                                                        <a href="#">
-                                                                            <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
-                                                                        </a>
+                                                        <li>
+                                                            <div class="media">
+                                                                <div class="media-left">
+                                                                    <a href="#">
+                                                                        <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="media-body">
+
+                                                                    <h4 class="media-heading"><a><font face="微軟正黑體">{{$de->meal->name}}</font></a></h4>
+                                                                    <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
+
+
+                                                                    <div>
+                                                                        <font face="微軟正黑體">{{$de->meal->ingredients}}</font>
                                                                     </div>
-                                                                    <div class="media-body">
-                                                                        <h4 class="media-heading"><a href="#">{{$de->meal->name}}</a></h4>
-                                                                        <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
-                                                                        <br>
 
-                                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
-
-                                                                    </div>
 
                                                                 </div>
 
-                                                            </li>
+                                                            </div>
+
+                                                        </li>
 
 
                                                     @endforeach

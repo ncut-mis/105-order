@@ -1,4 +1,3 @@
-
 @foreach($item as $de)
     <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
         {{ csrf_field() }}
@@ -14,23 +13,22 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <div class="col-md-7">
-                        <h4 class="media-heading"><a><font face="微軟正黑體">{{$meal->name}}</font></a></h4>
-                        <span class="mu-menu-price">${{$meal->price}}</span>
-                    </div>
-                    <div class="col-md-5">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-plus"></i>我要這個
-                        </button><br><br>
+
+                    <h4 class="media-heading"><a><font face="微軟正黑體">{{$de->meal->name}}</font></a></h4>
+                    <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
+
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-minus"></i> 我不要了
+                    </button>
+                   <div>
+                        <font face="微軟正黑體">{{$de->meal->ingredients}}</font>
                     </div>
 
-                    <div>
-                        <font face="微軟正黑體">{{$meal->ingredients}}</font>
-                    </div>
+
                 </div>
 
             </div>
-            <hr class="style-one" />
+
         </li>
 
     </form>

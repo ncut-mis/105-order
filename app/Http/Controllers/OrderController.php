@@ -38,28 +38,7 @@ class OrderController extends Controller
             $coupon= ['coupon' => $coupon,];
         }
 
-        $counter = Restaurant::where('id',Auth::user()->restaurant_id)
-            ->value('token');
-        $token = $counter;
 
-        $optionBuilder = new OptionsBuilder();
-        $optionBuilder->setTimeToLive(60*20);
-        $notificationBuilder = new PayloadNotificationBuilder('有顧客向您發送訂單囉');
-        $notificationBuilder->setBody('快讀我~我餓了!!!')
-            ->setSound('default');
-        $dataBuilder = new PayloadDataBuilder();
-        $dataBuilder->addData(['a_data' => 'my_data']);
-        $option = $optionBuilder->build();
-        $notification = $notificationBuilder->build();
-        $data = $dataBuilder->build();
-        sleep(0.5);
-        $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-        $downstreamResponse->numberSuccess();
-        $downstreamResponse->numberFailure();
-        $downstreamResponse->numberModification();
-        $downstreamResponse->tokensToDelete();
-        $downstreamResponse->tokensToModify();
-        $downstreamResponse->tokensToRetry();
 
             return view('confirm',$abc, $coupon);
     }
@@ -68,16 +47,19 @@ class OrderController extends Controller
         $dining_table = Dining_Table::where('order_id',$id)->first();
         $table = Table::find($dining_table['table_id']);
 
+        $order =Order::find($id);
 
         if ($table['status'] == "確認中")
         {
 
             return view('order_status.status0');
 
-        }elseif($table['status'] == "等餐中" ){
+        }elseif( $order['status'] == "出餐中" ){
             return view('order_status.status1');
-        } elseif($table['status'] == "空閒中" ){
+        } elseif($order['status'] == "未結帳" ){
             return view('order_status.status2');
+        } elseif($order['status'] == "已結帳" ){
+            return view('order_status.status3');
         }
 
 
