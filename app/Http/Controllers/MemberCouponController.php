@@ -10,20 +10,21 @@ use App\Order;
 class MemberCouponController extends Controller
 {
 
-    public function create(Order $order,$id)
+    public function use($id)
     {
-        $qu='0';
-        $time = Carbon::now();
+        $order = Order::where('customer_id',Auth::user()->id)->first();
 
-        Member_coupons::create( [
-            'coupon_id'=>$id,
-            'member_id'=>Auth::user()->member_id,
-            'order_id'=>$order['id'],
-            'status'=>$qu,
-            'UseTime'=>$time,
-        ]);
 
-        return view('order_status.status3');
+
+        $Member_coupons= Member_coupons::find($id);
+
+        $Member_coupons->status=1;
+        $Member_coupons->order_id=$order['id'];
+        $Member_coupons->UseTime=Carbon::now();
+        $Member_coupons->save();
+
+
+        return back();
 }
 
 
