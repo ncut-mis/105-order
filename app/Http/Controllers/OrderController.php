@@ -26,7 +26,7 @@ class OrderController extends Controller
         $table->status="確認中";
         $table->save();
 
-
+/**
 
         $counter = Restaurant::where('id',Auth::user()->restaurant_id)
             ->value('token');
@@ -52,7 +52,7 @@ class OrderController extends Controller
         $downstreamResponse->tokensToModify();
         $downstreamResponse->tokensToRetry();
 
-
+**/
 
 
         return redirect()->route('confirm.index');
