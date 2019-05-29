@@ -62,7 +62,7 @@ class OrderController extends Controller
     { $restaurant= auth()->user()->restaurant;
         $order = Order::where('customer_id',Auth::user()->id)->first();
         $items=$order->items;
-        $abc = ['item' => $items,]+['restaurant'=>$restaurant];
+        $data = ['item' => $items,]+['restaurant'=>$restaurant];
         $coupon=array();
         $coupon= ['coupon' => $coupon,];
         if (Auth::user()->member_id != null){
@@ -76,16 +76,18 @@ class OrderController extends Controller
         }
 
 
-        return view('confirm',$abc, $coupon);
+        return view('confirm',$data, $coupon);
 
 
     }
-    public function checkout($id)
+    public function status(Order $order)
     {
-        $dining_table = Dining_Table::where('order_id',$id)->first();
+        $dining_table = Dining_Table::where('order_id',$order['id'])->first();
         $table = Table::find($dining_table['table_id']);
 
-        $order =Order::find($id);
+
+
+
 
         if ($table['status'] == "確認中")
         {
@@ -96,8 +98,6 @@ class OrderController extends Controller
             return view('order_status.status1');
         } elseif($order['status'] == "未結帳" ){
             return view('order_status.status2');
-        } elseif($order['status'] == "已結帳" ){
-            return view('order_status.status3');
         }
 
 
@@ -105,19 +105,26 @@ class OrderController extends Controller
 
     }
 
-    public function create(Order $order,$id)
+    public function checkout()
     {
-        $qu='0';
-        $time = Carbon::now();
+        $restaurant= auth()->user()->restaurant;
+        $order = Order::where('customer_id',Auth::user()->id)->first();
+        $items=$order->items;
+        $data = ['item' => $items,]+['restaurant'=>$restaurant];
+        $coupon=array();
+        $coupon= ['coupon' => $coupon,];
+        if (Auth::user()->member_id != null){
 
-        Member_coupons::create( [
-            'coupon_id'=>$id,
-            'member_id'=>$order['member_id'],
-            'order_id'=>$order['id'],
-            'status'=>$qu,
-            'UseTime'=>$time,
-        ]);
+            $coupon =Member_coupons::join('coupons','member_coupons.coupon_id','=','coupons.id')
+                ->where('member_id',Auth::user()->member_id)
+                ->where('restaurant_id',Auth::user()->restaurant_id)
+                ->select('coupons.content','coupons.EndTime','coupons.title','coupons.photo','member_coupons.coupon_id','member_coupons.id','member_coupons.UseTime','member_coupons.status')
+                ->get();
+            $coupon= ['coupon' => $coupon,];
+        }
 
-        return view('order_status.status3');
+
+        return view('checkout',$data, $coupon);
+
     }
 }

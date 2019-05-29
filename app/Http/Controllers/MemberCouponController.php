@@ -24,7 +24,7 @@ class MemberCouponController extends Controller
         $Member_coupons->save();
 
 
-        return back();
+        return view('order_status.status3');
 }
 
 

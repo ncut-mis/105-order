@@ -44,12 +44,14 @@ Route::get('/confirm',['as' => 'confirm.index' , 'uses' => 'OrderController@conf
 /*查詢點餐明細Ajax*/
 Route::get('/order/{order}/item/test',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index2']);
 
-/*確認結帳*/
-Route::get('/order/{order}/checkout',['as' => 'order.checkout' , 'uses' => 'OrderController@checkout']);
+
+/*結帳*/
+Route::get('/checkout',['as' => 'order.checkout' , 'uses' => 'OrderController@checkout']);
 
 /*使用優惠卷*/
 Route::post('/MemberCoupons/{id}/use',['as' => 'member.coupon' , 'uses' => 'MemberCouponController@use']);
 
+Route::get('/order/{order}/status',['as' => 'order.status' , 'uses' => 'OrderController@status']);
 
 Route::get('/ajax',['as' => 'ajax' , 'uses' => 'MenuController@ajax']);
 Route::get('/ajaxdata',['as' => 'ajaxdata' , 'uses' => 'MenuController@ajaxdata']);
