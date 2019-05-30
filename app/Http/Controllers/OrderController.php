@@ -147,7 +147,7 @@ class OrderController extends Controller
         $order_check = Order::join('dining_tables','orders.id','=','dining_tables.order_id')
             ->join('tables','tables.id','=','dining_tables.table_id')
             ->where('orders.customer_id',Auth::user()->id)
-            ->value('tables.number');
+            ->pluck('tables.number');
 
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
