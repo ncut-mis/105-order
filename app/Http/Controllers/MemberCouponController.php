@@ -14,8 +14,8 @@ class MemberCouponController extends Controller
     {
         $order = Order::where('customer_id',Auth::user()->id)->first();
 
-
-
+        $restaurant= auth()->user()->restaurant;
+        $data=['restaurant'=>$restaurant];
         $Member_coupons= Member_coupons::find($id);
 
         $Member_coupons->status=1;
@@ -24,7 +24,7 @@ class MemberCouponController extends Controller
         $Member_coupons->save();
 
 
-        return view('order_status.status3');
+        return view('order_status.status3',$data);
 }
 
 

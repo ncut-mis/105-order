@@ -53,6 +53,10 @@ Route::post('/MemberCoupons/{id}/use',['as' => 'member.coupon' , 'uses' => 'Memb
 
 Route::get('/order/{order}/status',['as' => 'order.status' , 'uses' => 'OrderController@status']);
 
+
+Route::get('/checkout/successful',['as' => 'order.checkout.successful' , 'uses' => 'OrderController@end']);
+
+
 Route::get('/ajax',['as' => 'ajax' , 'uses' => 'MenuController@ajax']);
 Route::get('/ajaxdata',['as' => 'ajaxdata' , 'uses' => 'MenuController@ajaxdata']);
 

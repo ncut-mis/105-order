@@ -26,7 +26,6 @@ class OrderController extends Controller
         $table->status="確認中";
         $table->save();
 
-/**
 
         $counter = Restaurant::where('id',Auth::user()->restaurant_id)
             ->value('token');
@@ -52,7 +51,6 @@ class OrderController extends Controller
         $downstreamResponse->tokensToModify();
         $downstreamResponse->tokensToRetry();
 
-**/
 
 
         return redirect()->route('confirm.index');
@@ -62,7 +60,7 @@ class OrderController extends Controller
     { $restaurant= auth()->user()->restaurant;
         $order = Order::where('customer_id',Auth::user()->id)->first();
         $items=$order->items;
-        $data = ['item' => $items,]+['restaurant'=>$restaurant];
+        $data = ['item' => $items,]+['restaurant'=>$restaurant]+['order'=>$order];
         $coupon=array();
         $coupon= ['coupon' => $coupon,];
         if (Auth::user()->member_id != null){
@@ -110,7 +108,7 @@ class OrderController extends Controller
         $restaurant= auth()->user()->restaurant;
         $order = Order::where('customer_id',Auth::user()->id)->first();
         $items=$order->items;
-        $data = ['item' => $items,]+['restaurant'=>$restaurant];
+        $data = ['item' => $items,]+['restaurant'=>$restaurant]+['order'=>$order];
         $coupon=array();
         $coupon= ['coupon' => $coupon,];
         if (Auth::user()->member_id != null){
@@ -125,6 +123,19 @@ class OrderController extends Controller
 
 
         return view('checkout',$data, $coupon);
+
+    }
+
+    public function end()
+    {
+
+
+        $restaurant= auth()->user()->restaurant;
+        $data=['restaurant'=>$restaurant];
+
+
+
+        return view('order_status.status3',$data);
 
     }
 }

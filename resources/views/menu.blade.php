@@ -1,5 +1,25 @@
 @extends('layouts.index')
 
+@foreach($table as $t)
+
+@endforeach
+
+@if ($table->status == '確認中')
+    <?php
+    $url = "/confirm";
+    echo "<script type='text/javascript'>";
+    echo "window.location.href='$url'";
+    echo "</script>";
+    ?>
+@endif
+@if ($table->status == '出餐中')
+    <?php
+    $url = "/confirm";
+    echo "<script type='text/javascript'>";
+    echo "window.location.href='$url'";
+    echo "</script>";
+    ?>
+@endif
 @section('content')
 
 <!-- Start header section -->

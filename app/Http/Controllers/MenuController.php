@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 use App\Order;
+use App\Dining_Table;
+use App\Table;
 use Auth;
 class MenuController extends Controller
 {
@@ -11,13 +13,21 @@ class MenuController extends Controller
         $order = Order::where('customer_id',Auth::user()->id)->first();
         $items=$order->items;
 
+
+        $dining_table = Dining_Table::where('order_id',$order['id'])->first();
+        $table = Table::find($dining_table['table_id']);
+
+
         $order=Auth::user()->order;
 
 
 
         $meal = $restaurant->meals;
 
-        $data=['meals'=>$meal]+['restaurant'=>$restaurant]+['orders'=>$order]+['item' => $items];
+
+
+
+        $data=['meals'=>$meal]+['restaurant'=>$restaurant]+['orders'=>$order]+['item' => $items]+['table'=>$table];
         return view('menu',$data);
 
 

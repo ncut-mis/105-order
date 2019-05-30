@@ -1,8 +1,28 @@
 
+
+
 @extends('layouts.index')
+@foreach($order as $o)
+
+@endforeach
+
+@if ($order->status == '已結帳')
+    <?php
+    $url = "/checkout/successful";
+    echo "<script type='text/javascript'>";
+    echo "window.location.href='$url'";
+    echo "</script>";
+    ?>
+@endif
 
 @section('content')
+
 <!-- Start header section -->
+
+
+
+
+
 <header id="mu-header">
     <nav class="navbar navbar-default mu-main-navbar" role="navigation">
         <div class="container">
