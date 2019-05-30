@@ -108,7 +108,7 @@ class OrderController extends Controller
         $restaurant= auth()->user()->restaurant;
         $order = Order::where('customer_id',Auth::user()->id)->first();
         $items=$order->items;
-        $data = ['item' => $items,]+['restaurant'=>$restaurant]+['order'=>$order];
+        $data2 = ['item' => $items,]+['restaurant'=>$restaurant]+['order'=>$order];
         $coupon=array();
         $coupon= ['coupon' => $coupon,];
         if (Auth::user()->member_id != null){
@@ -121,8 +121,36 @@ class OrderController extends Controller
             $coupon= ['coupon' => $coupon,];
         }
 
+        $order_check = Order::join('dining_tables','orders.id','=','dining_tables.order_id')
+            ->join('tables','tables.id','=','dining_tables.table_id')
+            ->where('orders.customer_id',Auth::user()->id)
+            ->select('tables.number')->get();
 
-        return view('checkout',$data, $coupon);
+        $optionBuilder = new OptionsBuilder();
+        $optionBuilder->setTimeToLive(60*20);
+        $notificationBuilder = new PayloadNotificationBuilder($order_check.'桌要結帳囉!!!');
+        $notificationBuilder->setBody('客人等很久囉!!!')
+            ->setSound('default');
+        $dataBuilder = new PayloadDataBuilder();
+        $dataBuilder->addData(['a_data' => 'my_data']);
+        $option = $optionBuilder->build();
+        $notification = $notificationBuilder->build();
+        $data = $dataBuilder->build();
+
+        $counter = Restaurant::where('id',Auth::user()->restaurant_id)
+            ->value('token');
+        $token = $counter;
+
+        $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+        $downstreamResponse->numberSuccess();
+        $downstreamResponse->numberFailure();
+        $downstreamResponse->numberModification();
+        $downstreamResponse->tokensToDelete();
+        $downstreamResponse->tokensToModify();
+        $downstreamResponse->tokensToRetry();
+
+
+        return view('checkout',$data2, $coupon);
 
     }
 
