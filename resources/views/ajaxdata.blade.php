@@ -1,35 +1,30 @@
+@php
+    $total=0;
+
+@endphp
 @foreach($item as $de)
-    <form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
+    @php
+        $total=$total+$de->meal->price;
+    @endphp
+@endforeach
+<form method="POST" action="/order/{{$de->order_id}}/item/{{$de->id}}">
+    {{ csrf_field() }}
+    {{ method_field('DELETE') }}
 
-
-
-        <li>
-            <div class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
-                    </a>
-                </div>
-                <div class="media-body">
-
-                    <h4 class="media-heading"><a><font face="微軟正黑體">{{$de->meal->name}}</font></a></h4>
-                    <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
-
-                    <button type="submit" class="btn btn-danger">
+    <ul class="list-unstyled">
+        @foreach($item as $de)
+            <li>
+                <p><font size="4" face="微軟正黑體">{{$de->meal->name}} X {{$de->quantity}} &nbsp  ${{$de->meal->price*$de->quantity}}</font>   <button type="submit" class="btn btn-danger">
                         <i class="fa fa-minus"></i> 我不要了
-                    </button>
-                   <div>
-                        <font face="微軟正黑體">{{$de->meal->ingredients}}</font>
-                    </div>
+                    </button></p>
 
+            </li>
 
-                </div>
-
-            </div>
+        @endforeach
+        <HR  >
+        <li>
+            <p><font size="6" face="微軟正黑體">總價 {{$total}}</font></p>
 
         </li>
-
-    </form>
-@endforeach
+    </ul>
+</form>

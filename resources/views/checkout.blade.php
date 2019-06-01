@@ -48,8 +48,8 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
                     <li><a href="#top"> TOP </a></li>
-                    <li><a href="#item"> ITEM </a></li>
-                    <li><a href="#mu-contact"> COUPON </a></li>
+                    <li><a href="#item"> 您的點單 </a></li>
+                    <li><a href="#mu-contact"> 您的優惠眷 </a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

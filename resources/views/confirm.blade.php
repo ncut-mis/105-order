@@ -42,8 +42,8 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
                     <li><a href="#top"> TOP </a></li>
-                    <li><a href="#item"> ITEM </a></li>
-                    <li><a href="#mu-contact"> COUPON </a></li>
+                    <li><a href="#item"> 您的點單 </a></li>
+                    {{--<li><a href="#mu-contact"> 優惠眷 </a></li>--}}
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -100,106 +100,75 @@
     <!-- Start Counter Section -->
 
     <!-- End Counter Section -->
-
-    <!-- Start Restaurant Menu -->
-<section id="mu-restaurant-menu">
-    <div id="test"  style="text-align:center;">
-        <br><br><br> <br><br>
-    </div>
-    <br>
-    <a name="item" id="item"></a>
-    <div class="container">
+<section id="mu-reservation">
+    <div class="container">  <a name="item" id="item"></a>
         <div class="row">
+            <div id="test"  style="text-align:center;">
+                <br><br>
+            </div>
+            <br>
+
             <div class="col-md-12">
-                <div class="mu-restaurant-menu-area">
+
+
+                <div class="mu-reservation-area">
 
                     <div class="mu-title">
-                        <span class="mu-subtitle">點餐明細</span>
-                        <h2><font face="微軟正黑體">總價 {{$total}}</font></h2>
-
+                        <span class="mu-subtitle">您的點單</span><br><br>
 
                     </div>
 
-                    <div class="mu-restaurant-menu-content">
-
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <div class="tab-pane fade in active" >
-                                <div class="mu-tab-content-area">
-                                    <div class="row">
-
-                                        <div class="col-md-12">
-
-                                            <div class="mu-tab-content-left">
-
-                                                <ul class="mu-menu-item-nav">
-                                                    @foreach($item as $de)
+                    <div class="mu-reservation-content">
 
 
 
 
-                                                        <li>
-                                                            <div class="media">
-                                                                <div class="media-left">
-                                                                    <a href="#">
-                                                                        <img class="media-object" src="{{url('img/meal/'.$de->meal->photo)}}" alt="img">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="media-body">
+                        <div class="col-md-12">
+                            <div class="mu-reservation-right">
+                                <div class="mu-opening-hour">
+                                    <h2>ITEM</h2>
 
-                                                                    <h4 class="media-heading"><a><font face="微軟正黑體">{{$de->meal->name}}</font></a></h4>
-                                                                    <span class="mu-menu-price">數量: {{$de->quantity}} | ${{$de->meal->price*$de->quantity}}</span>
+                                    @php
+                                        $total=0;
 
-
-                                                                    <div>
-                                                                        <font face="微軟正黑體">{{$de->meal->ingredients}}</font>
-                                                                    </div>
+                                    @endphp
+                                    @foreach($item as $de)
+                                        @php
+                                            $total=$total+$de->meal->price;
+                                        @endphp
+                                    @endforeach
 
 
-                                                                </div>
+                                        <ul class="list-unstyled">
+                                            @foreach($item as $de)
+                                                <li>
+                                                    <p><font size="4" face="微軟正黑體">{{$de->meal->name}} X {{$de->quantity}} &nbsp  ${{$de->meal->price*$de->quantity}}</font> </p>
 
-                                                            </div>
+                                                </li>
 
-                                                        </li>
+                                            @endforeach
+                                            <HR  >
+                                            <li>
+                                                <p><font size="6" face="微軟正黑體">總價 {{$total}}</font></p>
 
-
-                                                    @endforeach
-
-
-                                                </ul>
-
-                                            </div>
-                                        </div>
+                                            </li>
+                                        </ul>
 
 
 
-                                    </div>
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
                 </div>
+
+
             </div>
         </div>
     </div>
-
-
 </section>
+    <!-- Start Restaurant Menu -->
+
 
 {{--@if (count($coupon) > 0)--}}
     {{--<link rel="stylesheet" href="/css/mbr-additional.css" >--}}

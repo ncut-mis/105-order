@@ -49,9 +49,9 @@
                 <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
                     <li><a href="#top"> TOP </a></li>
                     @if (count($item) > 0)
-                        <li><a href="#item"> ITEM </a></li>
+                        <li><a href="#item"> 您的點單 </a></li>
                     @endif
-                    <li><a href="#menu"> MENU </a></li>
+                    <li><a href="#menu"> 菜單 </a></li>
 
 
                 </ul>
@@ -68,99 +68,66 @@
 
     @if (count($item) > 0)
 
-        <section id="mu-restaurant-menu">
-            <a name="item" id="item"></a>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="mu-restaurant-menu-area">
 
-                            <div class="mu-title">
-                                <span class="mu-subtitle">點餐明細</span>
-                                <h2>ITEM</h2>
-                                <form method="POST" action="/order/{{$order->id}}/confirm">
-                                    {{ csrf_field() }}
-                                    {{ method_field('PATCH') }}
 
-                                    <button type="submit" class="btn btn-success">
-                                        <i ></i>送出餐點
-                                    </button>
+    <section id="mu-reservation">
+        <div class="container">  <a name="item" id="item"></a>
+            <div class="row">
+                <div class="col-md-12">
 
-                                </form>
-                                <br>
-                            </div>
 
-                            <div class="mu-restaurant-menu-content">
+                    <div class="mu-reservation-area">
 
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div class="tab-pane fade in active" >
-                                        <div class="mu-tab-content-area">
-                                            <div class="row">
+                        <div class="mu-title">
+                            <span class="mu-subtitle">您的點單</span><br><br>
+                            <form method="POST" action="/order/{{$order->id}}/confirm">
+                                {{ csrf_field() }}
+                                {{ method_field('PATCH') }}
 
-                                                <div class="col-md-12">
+                                <button type="submit" class="btn btn-success">
+                                    <i ></i>送出餐點
+                                </button>
 
-                                                    <div class="mu-tab-content-left">
+                            </form>
+                        </div>
 
-                                                        <ul class="mu-menu-item-nav">
-                                                            <div id="auto"></div>
-                                                            <script>
-                                                                $(document).ready( function(){
-                                                                    $('#auto').load('ajaxdata');
-                                                                    refresh();
-                                                                });
-
-                                                                function refresh()
-                                                                {
-                                                                    setTimeout( function() {
-                                                                        $('#auto').load('ajaxdata');
-                                                                        refresh();
-                                                                    }, 2000);
-                                                                }
-                                                            </script>
-                                                        </ul>
-
-                                                    </div>
-                                                </div>
+                        <div class="mu-reservation-content">
 
 
 
-                                            </div>
-                                        </div>
+
+                            <div class="col-md-12">
+                                <div class="mu-reservation-right">
+                                    <div class="mu-opening-hour">
+                                        <h2>ITEM</h2>
+
+                                        <div id="auto"></div>
+                                        <script>
+                                            $(document).ready( function(){
+                                                $('#auto').load('ajaxdata');
+                                                refresh();
+                                            });
+
+                                            function refresh()
+                                            {
+                                                setTimeout( function() {
+                                                    $('#auto').load('ajaxdata');
+                                                    refresh();
+                                                }, 2000);
+                                            }
+                                        </script>
                                     </div>
-
-
-
-
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
+
+
                 </div>
             </div>
-
-
-        </section>
+        </div>
+    </section>
     @endif
-
-
-
-
-
-
-
-
 
     <!-- End Chef Section -->
     <!-- End header section -->
