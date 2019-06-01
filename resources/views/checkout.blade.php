@@ -14,11 +14,10 @@
     echo "</script>";
     ?>
 @endif
-
+<meta http-equiv="refresh" content="30" />
 @section('content')
 
 <!-- Start header section -->
-
 
 
 
@@ -49,7 +48,7 @@
                 <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
                     <li><a href="#top"> TOP </a></li>
                     <li><a href="#item"> 您的點單 </a></li>
-                    <li><a href="#mu-contact"> 您的優惠眷 </a></li>
+                    <li><a href="#mu-contact"> 您的優惠卷 </a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

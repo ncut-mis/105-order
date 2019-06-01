@@ -128,15 +128,7 @@
                                 <div class="mu-opening-hour">
                                     <h2>ITEM</h2>
 
-                                    @php
-                                        $total=0;
 
-                                    @endphp
-                                    @foreach($item as $de)
-                                        @php
-                                            $total=$total+$de->meal->price;
-                                        @endphp
-                                    @endforeach
 
 
                                         <ul class="list-unstyled">
@@ -147,11 +139,7 @@
                                                 </li>
 
                                             @endforeach
-                                            <HR  >
-                                            <li>
-                                                <p><font size="6" face="微軟正黑體">總價 {{$total}}</font></p>
 
-                                            </li>
                                         </ul>
 
 

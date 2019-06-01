@@ -69,4 +69,5 @@ class MenuController extends Controller
         $data=['meals'=>$meal]+['restaurant'=>$restaurant]+['orders'=>$order]+['item' => $items];
         return view('ajaxdata',$data);
     }
+
 }
