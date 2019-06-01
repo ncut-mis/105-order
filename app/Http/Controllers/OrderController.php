@@ -25,34 +25,6 @@ class OrderController extends Controller
         $table = Table::find($dining_table['table_id']);
         $table->status="確認中";
         $table->save();
-
-
-        $counter = Restaurant::where('id',Auth::user()->restaurant_id)
-            ->value('token');
-
-        $token = $counter;
-
-        $optionBuilder = new OptionsBuilder();
-        $optionBuilder->setTimeToLive(60*20);
-        $notificationBuilder = new PayloadNotificationBuilder('有顧客向您發送訂單囉');
-        $notificationBuilder->setBody('快讀我~我餓了!!!')
-            ->setSound('default');
-        $dataBuilder = new PayloadDataBuilder();
-        $dataBuilder->addData(['a_data' => 'my_data']);
-        $option = $optionBuilder->build();
-        $notification = $notificationBuilder->build();
-        $data = $dataBuilder->build();
-        sleep(0.5);
-        $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-        $downstreamResponse->numberSuccess();
-        $downstreamResponse->numberFailure();
-        $downstreamResponse->numberModification();
-        $downstreamResponse->tokensToDelete();
-        $downstreamResponse->tokensToModify();
-        $downstreamResponse->tokensToRetry();
-
-
-
         return redirect()->route('confirm.index');
 
     }
@@ -80,7 +52,7 @@ class OrderController extends Controller
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
         $notificationBuilder = new PayloadNotificationBuilder('有顧客向您發送訂單囉');
-        $notificationBuilder->setBody('快讀我~我餓了!!!')
+        $notificationBuilder->setBody('請盡快確認餐點')
             ->setSound('default');
         $dataBuilder = new PayloadDataBuilder();
         $dataBuilder->addData(['a_data' => 'my_data']);
@@ -152,7 +124,7 @@ class OrderController extends Controller
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
         $notificationBuilder = new PayloadNotificationBuilder($order_check.'桌要結帳囉!!!');
-        $notificationBuilder->setBody('客人等很久囉!!!')
+        $notificationBuilder->setBody('請盡快完成結帳流程')
             ->setSound('default');
         $dataBuilder = new PayloadDataBuilder();
         $dataBuilder->addData(['a_data' => 'my_data']);
