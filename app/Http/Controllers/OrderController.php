@@ -47,11 +47,16 @@ class OrderController extends Controller
         $counter = Restaurant::where('id',Auth::user()->restaurant_id)
             ->value('token');
 
+        $abc = Order::join('dining_tables','dining_tables.order_id','=','orders.id')
+            ->join('tables','tables.id','=','dining_tables.table_id')
+            ->where('orders.customer_id',Auth::user()->id)
+            ->pluck('tables.number');
+
         $token = $counter;
 
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
-        $notificationBuilder = new PayloadNotificationBuilder('有顧客向您發送訂單囉');
+        $notificationBuilder = new PayloadNotificationBuilder('第'.$abc.'桌送出餐點囉');
         $notificationBuilder->setBody('請盡快確認餐點')
             ->setSound('default');
         $dataBuilder = new PayloadDataBuilder();
