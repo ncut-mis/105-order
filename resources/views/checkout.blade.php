@@ -14,7 +14,7 @@
     echo "</script>";
     ?>
 @endif
-<meta http-equiv="refresh" content="30" />
+<meta http-equiv="refresh" content="20" />
 @section('content')
 
 <!-- Start header section -->
@@ -93,7 +93,7 @@
                                     <ul class="list-unstyled">
                                         @foreach($item as $de)
                                         <li>
-                                            <p><font size="5" face="微軟正黑體">{{$de->meal->name}} X {{$de->quantity}} &nbsp &nbsp &nbsp ${{$de->meal->price*$de->quantity}}</font> </p>
+                                            <p><font size="3" face="微軟正黑體">{{$de->meal->name}} X {{$de->quantity}} &nbsp &nbsp &nbsp ${{$de->meal->price*$de->quantity}}</font> </p>
 
                                         </li>
                                         @endforeach

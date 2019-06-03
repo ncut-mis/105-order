@@ -134,7 +134,7 @@
                                         <ul class="list-unstyled">
                                             @foreach($item as $de)
                                                 <li>
-                                                    <p><font size="4" face="微軟正黑體">{{$de->meal->name}} X {{$de->quantity}} &nbsp  ${{$de->meal->price*$de->quantity}}</font> </p>
+                                                    <p><font size="3" face="微軟正黑體">{{$de->meal->name}} X {{$de->quantity}} &nbsp  ${{$de->meal->price*$de->quantity}}</font> </p>
 
                                                 </li>
 

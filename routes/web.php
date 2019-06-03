@@ -31,7 +31,7 @@ Route::get('/menu',['as' => 'menu.index' , 'uses' => 'MenuController@index']);
 Route::post('/order/{id}/item',['as' => 'order.item.store' , 'uses' => 'OrderItemController@store']);
 
 /*查詢點餐明細*/
-Route::get('/item',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index']);
+//Route::get('/item',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index']);
 
 /*取消已點選餐點*/
 Route::delete('/order/{id}/item/{item}',['as' => 'order.item.destroy' , 'uses' => 'OrderItemController@destroy']);
@@ -49,7 +49,7 @@ Route::get('/order/{order}/item/test',['as' => 'order.item.index' , 'uses' => 'O
 Route::get('/checkout',['as' => 'order.checkout' , 'uses' => 'OrderController@checkout']);
 
 /*使用優惠卷*/
-Route::post('/MemberCoupons/{id}/use',['as' => 'member.coupon' , 'uses' => 'MemberCouponController@use']);
+Route::post('/MemberCoupons/{id}/use',['as' => 'coupon.use' , 'uses' => 'MemberCouponController@use']);
 
 Route::get('/order/{order}/status',['as' => 'order.status' , 'uses' => 'OrderController@status']);
 
@@ -58,5 +58,5 @@ Route::get('/checkout/successful',['as' => 'order.checkout.successful' , 'uses' 
 
 
 Route::get('/ajax',['as' => 'ajax' , 'uses' => 'MenuController@ajax']);
-Route::get('/ajaxdata',['as' => 'ajaxdata' , 'uses' => 'MenuController@ajaxdata']);
+Route::get('/ajaxdata',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index']);
 

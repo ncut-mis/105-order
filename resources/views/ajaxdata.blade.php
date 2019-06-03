@@ -14,7 +14,7 @@
     <ul class="list-unstyled">
         @foreach($item as $de)
             <li>
-                <p><font size="4" face="微軟正黑體">{{$de->meal->name}} X {{$de->quantity}} &nbsp  ${{$de->meal->price*$de->quantity}}</font>   <button type="submit" class="btn btn-danger">
+                <p><font size="3" face="微軟正黑體">{{$de->meal->name}} X {{$de->quantity}}   &nbsp  ${{$de->meal->price*$de->quantity}}</font>   <button type="submit" class="btn btn-danger">
                         <i class="fa fa-minus"></i> 我不要了
                     </button></p>
 
