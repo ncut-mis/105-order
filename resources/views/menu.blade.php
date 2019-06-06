@@ -60,6 +60,21 @@
     </nav>
 </header>
 <a name="top" id="top"></a>
+
+@php
+    $total=0;
+
+@endphp
+@foreach($item as $de)
+    @php
+        $total=$total+$de->meal->price;
+    @endphp
+@endforeach
+
+
+
+
+
 @foreach($orders as $order)
 
 
@@ -78,28 +93,7 @@
 
                     <div class="mu-reservation-area">
 
-                        <div class="mu-title">
-                            <span class="mu-subtitle">您的點單</span><br><br>
-                            <form method="POST" action="/order/{{$order->id}}/confirm">
-                                {{ csrf_field() }}
-                                {{ method_field('PATCH') }}
 
-                                <button type="submit" class="btn btn-success">
-                                    <i ></i>送出餐點
-                                </button>
-
-                            </form>
-                        </div>
-
-                        <div class="mu-reservation-content">
-
-
-
-
-                            <div class="col-md-12">
-                                <div class="mu-reservation-right">
-                                    <div class="mu-opening-hour">
-                                        <h2>ITEM</h2>
 
                                         <div id="auto"></div>
                                         <script>
@@ -116,10 +110,7 @@
                                                 }, 2000);
                                             }
                                         </script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
 

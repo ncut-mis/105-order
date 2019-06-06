@@ -19,10 +19,13 @@ class OrderController extends Controller
 {
 
 
-    public function confirm(Order $order)
+    public function confirm(Order $order,Request $request)
     {
         $dining_table = Dining_Table::where('order_id',$order['id'])->first();
         $table = Table::find($dining_table['table_id']);
+
+        $order->total=$request['total'];
+        $order->save();
         $table->status="確認中";
         $table->save();
         return redirect()->route('confirm.index');
