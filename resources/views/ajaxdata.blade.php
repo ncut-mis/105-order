@@ -8,18 +8,18 @@
     @endphp
 @endforeach
 
-<div class="mu-title" hidden>
-    <span class="mu-subtitle">您的點單</span><br><br>
-    <form method="POST" action="/order/{{$de->order_id}}/confirm">
-        {{ csrf_field() }}
-        {{ method_field('PATCH') }}
-        <input type="hidden" name="total" value=" {{$total}}">
-        <button type="submit" class="btn btn-success">
-            <i ></i>送出餐點
-        </button>
+{{--<div class="mu-title">--}}
+    {{--<span class="mu-subtitle">您的點單</span><br><br>--}}
+    {{--<form method="POST" action="/order/{{$de->order_id}}/confirm">--}}
+        {{--{{ csrf_field() }}--}}
+        {{--{{ method_field('PATCH') }}--}}
+        {{--<input type="hidden" name="total" value=" {{$total}}">--}}
+        {{--<button type="submit" class="btn btn-success">--}}
+            {{--<i ></i>送出餐點--}}
+        {{--</button>--}}
 
-    </form>
-</div>
+    {{--</form>--}}
+{{--</div>--}}
 
 <div class="mu-reservation-content">
 
