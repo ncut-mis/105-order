@@ -8,7 +8,7 @@
     @endphp
 @endforeach
 
-<div class="mu-title">
+<div class="mu-title" hidden>
     <span class="mu-subtitle">您的點單</span><br><br>
     <form method="POST" action="/order/{{$de->order_id}}/confirm">
         {{ csrf_field() }}
