@@ -25,14 +25,13 @@ class OrderItemController extends Controller
         ]);
         return redirect()->route('menu.index');
     }
-    public function index()
+    public function index(Order $order)
     {
         $restaurant= auth()->user()->restaurant;
 
-        $order = Order::where('customer_id',Auth::user()->id)->first();
+
         $items=$order->items;
 
-        $order=Auth::user()->order;
 
 
 

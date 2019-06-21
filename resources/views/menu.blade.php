@@ -96,20 +96,44 @@
 
 
                                         <div id="auto"></div>
-                                        <script>
-                                            $(document).ready( function(){
-                                                $('#auto').load('ajaxdata');
-                                                refresh();
-                                            });
 
-                                            function refresh()
-                                            {
-                                                setTimeout( function() {
-                                                    $('#auto').load('ajaxdata');
-                                                    refresh();
-                                                }, 2000);
-                                            }
-                                        </script>
+
+                        <script>
+                            var xhr =new XMLHttpRequest();
+                            xhr.open("get","/order/{{$order->id}}/item",true);
+                            xhr.onload=function(){
+                                var test=document.getElementById("auto");
+                                test.innerHTML=this.responseText;
+                            };
+
+                            xhr.send();
+                            function ajaxItem(){
+
+
+                                var xhr =new XMLHttpRequest();
+                                xhr.open("get","/order/{{$order->id}}/item",true);
+                                xhr.onload=function(){
+                                    var test=document.getElementById("auto");
+                                    test.innerHTML=this.responseText;
+                                };
+
+                                xhr.send();
+                            }
+
+
+
+                            var myVar;
+                            myVar = setInterval(ajaxItem, 3000);
+
+
+
+
+
+                        </script>
+
+
+
+
 
                     </div>
 

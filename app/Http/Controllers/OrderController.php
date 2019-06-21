@@ -86,22 +86,10 @@ class OrderController extends Controller
         $dining_table = Dining_Table::where('order_id',$order['id'])->first();
         $table = Table::find($dining_table['table_id']);
 
+        $order=['order' => $order];
+        $table=['table' => $table];
 
-
-
-
-        if ($table['status'] == "確認中")
-        {
-
-            return view('order_status.status0');
-
-        }elseif( $order['status'] == "出餐中" ){
-            return view('order_status.status1');
-        } elseif($order['status'] == "用餐中" ){
-            return view('order_status.status2');
-        }
-
-
+        return view('order_status.status',$order,$table);
 
 
     }

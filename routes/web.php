@@ -31,7 +31,7 @@ Route::get('/menu',['as' => 'menu.index' , 'uses' => 'MenuController@index']);
 Route::post('/order/{id}/item',['as' => 'order.item.store' , 'uses' => 'OrderItemController@store']);
 
 /*查詢點餐明細*/
-//Route::get('/item',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index']);
+Route::get('order/{order}/item',['as' => 'order.item.index' , 'uses' => 'OrderItemController@index']);
 
 /*取消已點選餐點*/
 Route::delete('/order/{id}/item/{item}',['as' => 'order.item.destroy' , 'uses' => 'OrderItemController@destroy']);
